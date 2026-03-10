@@ -1,0 +1,101 @@
+{
+  "version": "0.1.0",
+  "modules": [
+    {
+      "id": "rule-golden-principles",
+      "type": "rule",
+      "name": "golden-principles",
+      "description": "11개 핵심 원칙 (불변성, TDD, 증거 기반 완료, HARD-GATE 등)",
+      "path": "modules/rules/golden-principles.md",
+      "tags": ["core"]
+    },
+    {
+      "id": "rule-coding-style",
+      "type": "rule",
+      "name": "coding-style",
+      "description": "코딩 스타일 규칙 (불변성, 파일 구조, 에러 처리, 입력 검증, Pre-Completion 체크리스트)",
+      "path": "modules/rules/coding-style.md",
+      "tags": ["core", "quality"]
+    },
+    {
+      "id": "rule-git-workflow",
+      "type": "rule",
+      "name": "git-workflow",
+      "description": "Git 워크플로우 규칙 (Conventional Commits, /plan → /code-review → /commit 파이프라인)",
+      "path": "modules/rules/git-workflow.md",
+      "tags": ["core", "quality"]
+    },
+    {
+      "id": "agent-planner",
+      "type": "agent",
+      "name": "planner",
+      "description": "구현 계획 수립 에이전트. 코드를 작성하지 않고 계획만 세운다.",
+      "path": "modules/agents/planner.md",
+      "tags": ["planning", "core"]
+    },
+    {
+      "id": "agent-code-reviewer",
+      "type": "agent",
+      "name": "code-reviewer",
+      "description": "2단계 코드 리뷰 에이전트 (Stage 1: 스펙 준수, Stage 2: 코드 품질). 심각도 4등급 판정.",
+      "path": "modules/agents/code-reviewer.md",
+      "tags": ["quality", "security"]
+    },
+    {
+      "id": "agent-verify",
+      "type": "agent",
+      "name": "verify-agent",
+      "description": "검증 파이프라인 에이전트 (TypeCheck → Lint → Build → Test). 4모드 지원.",
+      "path": "modules/agents/verify-agent.md",
+      "tags": ["quality"]
+    },
+    {
+      "id": "command-plan",
+      "type": "command",
+      "name": "plan",
+      "description": "/plan 슬래시 명령어. planner 에이전트를 호출하여 구현 계획을 수립한다.",
+      "path": "modules/commands/plan.md",
+      "tags": ["planning", "core"]
+    },
+    {
+      "id": "command-code-review",
+      "type": "command",
+      "name": "code-review",
+      "description": "/code-review 슬래시 명령어. code-reviewer 에이전트를 호출하여 변경사항을 리뷰한다.",
+      "path": "modules/commands/code-review.md",
+      "tags": ["quality", "security"]
+    },
+    {
+      "id": "command-verify",
+      "type": "command",
+      "name": "verify",
+      "description": "/verify 슬래시 명령어. verify-agent를 스폰하여 fresh-context에서 검증한다.",
+      "path": "modules/commands/verify.md",
+      "tags": ["quality"]
+    },
+    {
+      "id": "command-commit",
+      "type": "command",
+      "name": "commit",
+      "description": "/commit 슬래시 명령어. Conventional Commits 형식으로 커밋을 생성한다.",
+      "path": "modules/commands/commit.md",
+      "tags": ["core"]
+    },
+    {
+      "id": "hook-secret-filter",
+      "type": "hook",
+      "name": "secret-filter",
+      "description": "PostToolUse 훅. 도구 출력에서 시크릿을 감지하여 마스킹한다 (3계층 탐지).",
+      "path": "modules/hooks/secret-filter.sh",
+      "tags": ["security"]
+    },
+    {
+      "id": "hook-security-auto-trigger",
+      "type": "hook",
+      "name": "security-auto-trigger",
+      "description": "PostToolUse 훅 (Edit/Write). 보안 관련 파일 수정 시 /code-review 실행을 권장한다.",
+      "path": "modules/hooks/security-auto-trigger.sh",
+      "tags": ["security"]
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+## 실전 예시: 프론트엔드 프로젝트 전역 설정
+
+`~/.claude/settings.json`:
+
+```json
+{
+  "autoUpdatesChannel": "latest",
+  "permissions": {
+    "allow": [
+      "Bash(ls **)",
+      "Bash(cat **)",
+      "Bash(head **)",
+      "Bash(tail **)",
+      "Bash(find **)",
+      "Bash(grep **)",
+      "Bash(rg **)",
+      "Bash(tree **)",
+      "Bash(mkdir **)",
+      "Bash(pwd)",
+      "Bash(wc **)",
+      "Bash(echo **)",
+      "Bash(which *)",
+      "Bash(node --version)",
+      "Bash(git status **)",
+      "Bash(git diff **)",
+      "Bash(git log **)",
+      "Bash(git branch **)",
+      "Bash(git show **)",
+      "Bash(git blame **)",
+      "Bash(pnpm install **)",
+      "Bash(pnpm run **)",
+      "Bash(pnpm test **)",
+      "Bash(pnpm build **)",
+      "Bash(pnpm lint **)",
+      "Bash(pnpm add **)",
+      "Bash(pnpm dlx **)",
+      "Bash(tsc **)",
+      "Bash(eslint **)",
+      "Bash(prettier **)",
+      "Bash(vitest **)",
+      "Bash(jest **)",
+      "Bash(python **)",
+      "Bash(python3 **)"
+    ],
+    "ask": [
+      "Bash(git commit **)",
+      "Bash(git push **)",
+      "Bash(git merge **)",
+      "Bash(git rebase **)",
+      "Bash(git checkout **)"
+    ],
+    "deny": [
+      "Bash(rm -rf **)",
+      "Bash(sudo **)",
+      "Bash(git push --force **)",
+      "Bash(git reset --hard **)",
+      "Read(./.env)",
+      "Edit(./.env)"
+    ]
+  }
+}
+```
