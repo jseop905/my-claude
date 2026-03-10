@@ -234,7 +234,7 @@
 - [x] 각 모듈 파일의 일관성 검토 (포맷, 용어, 스타일) — 전 항목 OK (frontmatter, XML 구조, 명령어/에이전트 이름 통일)
 - [x] 불필요한 claude-forge 잔재 제거 — forge/OPENCLAW/MCP/특정 스택 참조 0건
 - [x] design.md와 실제 구현 간 차이 확인 및 문서 업데이트 — `/verify` 명령어 누락 발견 → 추가 구현 완료
-- [ ] 초기 커밋 및 태그 (v0.1.0)
+- [x] 초기 커밋 및 태그 (v0.1.0) — `6c98a89` feat: initial release of my-claude v0.1.0
 
 ---
 
