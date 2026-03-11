@@ -202,14 +202,6 @@
       "tags": ["orchestration"]
     },
     {
-      "id": "command-quick-commit",
-      "type": "command",
-      "name": "quick-commit",
-      "description": "/quick-commit 작은 변경용 간소화 커밋. 3파일/20줄 초과 시 경고.",
-      "path": "modules/commands/quick-commit.md",
-      "tags": ["core"]
-    },
-    {
       "id": "command-tdd",
       "type": "command",
       "name": "tdd",
@@ -272,6 +264,30 @@
       "description": "Agent Teams 오케스트레이션 엔진. 다중 에이전트 병렬 실행, 충돌 방지, 결과 통합.",
       "path": "modules/skills/team-orchestrator/SKILL.md",
       "tags": ["orchestration"]
+    },
+    {
+      "id": "template-settings",
+      "type": "template",
+      "name": "settings.json",
+      "description": "프로젝트 권한/훅 설정 템플릿 (allow/ask/deny 3단계 + 6개 훅 등록).",
+      "path": "templates/settings.json.tmpl",
+      "tags": ["config"]
+    },
+    {
+      "id": "template-global-settings",
+      "type": "template",
+      "name": "global.settings.json",
+      "description": "전역 설정 템플릿 (~/.claude/settings.json). 읽기 전용 안전 권한.",
+      "path": "templates/global.settings.json.tmpl",
+      "tags": ["config"]
+    },
+    {
+      "id": "template-claude-md",
+      "type": "template",
+      "name": "CLAUDE.md",
+      "description": "프로젝트 컨텍스트 템플릿 (기술 스택, 명령어, 작업 규칙 플레이스홀더).",
+      "path": "templates/CLAUDE.md.tmpl",
+      "tags": ["config"]
     }
   ]
 }

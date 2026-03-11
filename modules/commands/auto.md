@@ -35,7 +35,7 @@ description: 풀 파이프라인을 자동 실행합니다. /plan → /tdd → /
 탐색 → /tdd → /verify-loop → /commit
 ```
 
-1. **Explore**: 버그 재현 및 원인 분석
+1. **Explore**: architect 에이전트로 버그 재현 및 원인 분석
 2. **TDD**: 재현 테스트 작성 → 수정 → 통과 확인
 3. **Verify Loop**: 전체 검증
 4. **Commit**: 커밋
@@ -72,3 +72,11 @@ refactor-cleaner → /code-review → /verify-loop → /commit
 ### 다음 단계
 - [ ] PR 생성이 필요하면 알려주세요
 ```
+
+## 핵심 규칙
+
+- 파이프라인 진행 중 불필요한 질문 금지 (Ultrawork 모드)
+- CRITICAL 보안 이슈만 파이프라인 중단 사유
+- 단계 실패 시 즉시 중단, 다음 단계로 넘어가지 않음
+- feature 모드의 Plan 단계에서만 사용자 승인 필요
+- Fixable 에러는 최대 3회 자동 재시도

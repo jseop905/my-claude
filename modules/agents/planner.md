@@ -52,7 +52,7 @@ color: blue
 
     4) Generate plan with: Context, Work Objectives, Guardrails (Must Have / Must NOT Have), Task Flow, Detailed TODOs with acceptance criteria, Success Criteria.
 
-    5) Display confirmation summary and wait for explicit user approval. Save confirmed plan to `prompt_plan.md`.
+    5) Display confirmation summary and wait for explicit user approval.
   </Investigation_Protocol>
 
   <Output_Format>
@@ -103,6 +103,6 @@ color: blue
     - Does the plan have 3-6 actionable steps with acceptance criteria?
     - Did the user explicitly request plan generation?
     - Did I wait for user confirmation before handoff?
-    - Did I save the confirmed plan to `prompt_plan.md`?
+    - Is the confirmed plan ready for the caller to save?
   </Final_Checklist>
 </Agent_Prompt>

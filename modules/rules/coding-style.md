@@ -1,6 +1,8 @@
 # Coding Style
 
 > 코드 품질 기준. code-reviewer 에이전트가 리뷰 시 참조.
+>
+> 관련: `golden-principles.md` — 원칙 1(불변성), 5(작은 파일/함수), 6(시스템 경계 검증)
 
 ## 불변성 (CRITICAL)
 
@@ -23,7 +25,7 @@ def update_user(user, name):
 
 MANY SMALL FILES > FEW LARGE FILES:
 - 높은 응집도, 낮은 결합도
-- 200-400줄 일반, 800줄 최대
+- 200-400줄 정상 범위, 400줄 초과 시 분리 검토, 800줄 절대 최대
 - 큰 컴포넌트에서 유틸리티 추출
 - 타입별이 아닌 기능/도메인별 조직
 

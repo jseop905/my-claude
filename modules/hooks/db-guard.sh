@@ -21,16 +21,12 @@ fi
 
 INPUT=$(cat)
 
-# 환경변수로 전달하여 Python에서 처리
-export _GUARD_INPUT="$INPUT"
-
-$PYTHON_CMD << 'GUARD_SCRIPT'
-import os
+echo "$INPUT" | $PYTHON_CMD << 'GUARD_SCRIPT'
 import sys
 import json
 import re
 
-input_json = os.environ.get("_GUARD_INPUT", "")
+input_json = sys.stdin.read()
 if not input_json:
     sys.exit(0)
 

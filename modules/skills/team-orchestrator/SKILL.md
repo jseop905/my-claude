@@ -1,6 +1,7 @@
 ---
 name: team-orchestrator
 description: Agent Teams 오케스트레이션 엔진 - 팀 구성, 작업 분배, 의존성 관리, 결과 집계
+argument-hint: '<mode: feature|bugfix|refactor|review> [--dry-run]'
 ---
 
 ## Overview
@@ -187,7 +188,7 @@ for member in team:
   1. 실패한 에이전트 식별
   2. 실패 원인 분석 (의존성 문제, 파일 충돌 등)
   3. 새 에이전트로 재시도 (최대 2회)
-  4. 재시도 실패 시 리더가 직접 해결
+  4. 연속 2회 실패 시 해당 Task 중단, 리더가 직접 해결
 ```
 
 ### 집계 출력 형식

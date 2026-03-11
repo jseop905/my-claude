@@ -45,15 +45,21 @@ if os.path.exists(marker):
     sys.exit(0)
 
 # 세션 통계 확인 (Claude Code 내부 통계 파일)
+# 통계 파일이 없으면 마커 파일 존재 여부로 대체 판단
 stats_file = os.path.expanduser('~/.claude/.session-stats.json')
+total_calls = 0
 try:
     with open(stats_file) as f:
         stats = json.load(f)
     session = stats.get('sessions', {}).get(sid, {})
     total_calls = session.get('total_calls', 0)
 except Exception:
-    # 통계 파일이 없거나 읽기 실패 시 건너뜀
-    sys.exit(0)
+    # 통계 파일이 없으면 마커 디렉터리 내 파일 수로 추정
+    try:
+        existing = [f for f in os.listdir(marker_dir) if f.startswith('wrap-')]
+        total_calls = 0 if len(existing) > 0 else 30  # 첫 세션이면 제안
+    except Exception:
+        total_calls = 30  # 마커 디렉터리도 없으면 첫 실행 → 제안
 
 # 최소 30회 도구 호출 후에만 제안
 if total_calls < 30:

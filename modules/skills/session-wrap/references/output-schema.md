@@ -61,9 +61,24 @@
     "info": "number"
   },
   "items": [
-    "... 공통 아이템 스키마와 동일 + user_display 필드"
+    {
+      "... 공통 아이템 스키마 필드 전체 +": "",
+      "user_display": "string (필수, Phase 2에서 추가. [source_tag] 접두사 + 행동 요약 1줄)"
+    }
   ]
 }
+```
+
+### user_display 필드 상세
+
+duplicate-checker의 3단계(카테고리 재분류)에서 각 항목에 추가되는 필드.
+Phase 1 subagent 출력에는 포함되지 않는다.
+
+| 카테고리 | 어미 | 예시 |
+|---------|------|------|
+| auto | ~합니다 | `[docs] README.md 타임스탬프를 갱신합니다` |
+| user | ~하시겠습니까? | `[docs] README.md 설치 섹션에 새 의존성 반영 — 수정하시겠습니까?` |
+| info | ~입니다 | `[learning] 새로운 API 패턴을 발견했습니다` |
 ```
 
 ## 파일 출력 위치

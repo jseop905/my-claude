@@ -1,6 +1,8 @@
 # Git Workflow
 
 > 커밋 포맷, 작업 흐름, PR 가이드.
+>
+> 관련: `golden-principles.md` — 원칙 9(HARD-GATE: 3파일 이상 변경 시 `/plan` 먼저)
 
 ## Commit Message Format
 

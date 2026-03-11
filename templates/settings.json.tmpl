@@ -1,14 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(*)",
       "Read(*)",
-      "Write(*)",
       "Edit(*)",
+      "Write(*)",
       "Glob(*)",
       "Grep(*)",
       "Skill(*)",
-      "WebSearch(*)",
       "Task(*)",
       "TaskCreate(*)",
       "TaskUpdate(*)",
@@ -16,7 +14,26 @@
       "TaskList(*)",
       "TaskOutput(*)",
       "TaskStop(*)",
-      "AskUserQuestion(*)"
+      "AskUserQuestion(*)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git blame *)"
+    ],
+    "ask": [
+      "WebSearch(*)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git checkout *)",
+      "Bash(git branch *)",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(npm install *)",
+      "Bash(npm add *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm add *)",
+      "Bash(yarn add *)"
     ],
     "deny": [
       "Bash(rm -rf /)*",
@@ -25,8 +42,8 @@
       "Bash(rm -r .)*",
       "Bash(rm -r ./)*",
       "Bash(rm -rf *)*",
-      "Bash(sudo:*)",
-      "Bash(chmod 777:*)",
+      "Bash(sudo *)",
+      "Bash(chmod 777 *)",
       "Bash(curl*|*sh)*",
       "Bash(wget*|*sh)*",
       "Bash(*>~/.ssh/*)",
@@ -36,14 +53,23 @@
       "Bash(git push -f*main)*",
       "Bash(git push --force*master)*",
       "Bash(git push -f*master)*",
-      "Bash(git reset --hard origin/*)*",
+      "Bash(git reset --hard *)*",
       "Bash(git clean -f*)*",
       "Bash(git checkout -- .)*",
       "Bash(git restore .)*",
+      "Bash(git push *)",
+      "Bash(git merge *)",
+      "Bash(git rebase *)",
       "Bash(npm publish)*",
       "Bash(eval *)*",
       "Bash(bash -c *)*",
-      "Bash(sh -c *)*"
+      "Bash(sh -c *)*",
+      "Read(./.git/**)",
+      "Edit(./.git/**)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Edit(./.env)",
+      "Edit(./.env.*)"
     ]
   },
   "hooks": {
@@ -79,11 +105,13 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/security-auto-trigger.sh"
+            "command": ".claude/hooks/security-auto-trigger.sh",
+            "timeout": 10000
           },
           {
             "type": "command",
-            "command": ".claude/hooks/code-quality-reminder.sh"
+            "command": ".claude/hooks/code-quality-reminder.sh",
+            "timeout": 5000
           }
         ]
       }

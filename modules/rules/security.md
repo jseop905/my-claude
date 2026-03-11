@@ -32,20 +32,20 @@ if not api_key:
 - **CI/CD**: 파이프라인 시크릿 변수
 - **프로덕션**: 시크릿 매니저 (Vault, AWS Secrets Manager 등)
 
-## OWASP Top 10 체크리스트
+## OWASP Top 10:2021 체크리스트
 
 | # | 위협 | 방어 |
 |---|------|------|
-| 1 | Injection | 파라미터화된 쿼리, ORM 사용 |
-| 2 | Broken Auth | 안전한 세션 관리, MFA |
-| 3 | Sensitive Data Exposure | 전송/저장 시 암호화 |
-| 4 | XXE | XML 외부 엔티티 비활성화 |
-| 5 | Broken Access Control | 최소 권한 원칙, RBAC |
-| 6 | Security Misconfiguration | 기본 설정 변경, 불필요한 기능 비활성화 |
-| 7 | XSS | 출력 이스케이프, CSP 헤더 |
-| 8 | Insecure Deserialization | 입력 검증, 신뢰할 수 없는 데이터 역직렬화 금지 |
-| 9 | Vulnerable Components | 의존성 정기 업데이트, 취약점 스캔 |
-| 10 | Insufficient Logging | 보안 이벤트 로깅, 모니터링 |
+| A01 | Broken Access Control | 최소 권한 원칙, RBAC, 기본 거부 정책 |
+| A02 | Cryptographic Failures | 전송/저장 시 암호화, 강력한 알고리즘 사용 |
+| A03 | Injection | 파라미터화된 쿼리, ORM 사용, 입력 검증 |
+| A04 | Insecure Design | 위협 모델링, 보안 설계 패턴 적용 |
+| A05 | Security Misconfiguration | 기본 설정 변경, 불필요한 기능 비활성화 |
+| A06 | Vulnerable and Outdated Components | 의존성 정기 업데이트, 취약점 스캔 |
+| A07 | Identification and Authentication Failures | 안전한 세션 관리, MFA |
+| A08 | Software and Data Integrity Failures | 서명 검증, CI/CD 파이프라인 보안 |
+| A09 | Security Logging and Monitoring Failures | 보안 이벤트 로깅, 침해 탐지 모니터링 |
+| A10 | Server-Side Request Forgery (SSRF) | URL 허용 목록, 내부 네트워크 접근 차단 |
 
 ## Security Response Protocol
 

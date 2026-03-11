@@ -30,6 +30,24 @@
 - 구현 완료 후 `/code-review`로 리뷰
 - `/commit`으로 Conventional Commits 형식 커밋
 - 한 세션 = 한 작업 (컨텍스트 50% 넘으면 새 세션)
+- `/auto`로 풀 파이프라인 자동 실행 (plan → tdd → review → verify → commit)
+- `/tdd`로 TDD 워크플로우 실행 (RED → GREEN → REFACTOR)
+- `/verify-loop`으로 빌드/테스트 반복 검증 (최대 3회 재시도 + 자동수정)
+- `/build-fix`로 빌드 에러 자동 수정
+- `/orchestrate`로 다중 에이전트 병렬 실행
+
+## 자동 실행 훅
+
+다음 훅이 자동으로 실행됩니다 (settings.json에서 설정):
+
+| 훅 | 트리거 | 설명 |
+|---|---|---|
+| `db-guard.sh` | Bash 실행 전 | DB 삭제/변경 명령 차단 |
+| `remote-command-guard.sh` | Bash 실행 전 | 원격 접속/실행 명령 차단 |
+| `secret-filter.sh` | 도구 사용 후 | 시크릿 노출 감지 |
+| `security-auto-trigger.sh` | 코드 수정 후 | 보안 관련 파일 수정 시 리뷰 알림 |
+| `code-quality-reminder.sh` | 코드 수정 후 | 에러 핸들링/불변성/입력 검증 리마인더 |
+| `session-wrap-suggest.sh` | 세션 종료 시 | `/session-wrap` 실행 제안 |
 
 ## 환경 참고
 

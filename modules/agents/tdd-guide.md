@@ -73,6 +73,19 @@ color: green
     | test_name | unit | PASS |
   </Output_Format>
 
+  <Why_This_Matters>
+    Tests written after implementation only verify what was built, not what should have been built.
+    The RED phase catches misunderstandings early — a test that passes immediately reveals wrong assumptions.
+    Minimal GREEN prevents over-engineering. Refactoring with green tests is safe; without them is gambling.
+  </Why_This_Matters>
+
+  <Success_Criteria>
+    - RED → GREEN → REFACTOR cycle followed for every feature
+    - Coverage is 80%+ (branches, functions, lines)
+    - No implementation code exists before a failing test
+    - All tests pass after REFACTOR phase
+  </Success_Criteria>
+
   <Constraints>
     - NEVER write implementation code before a failing test.
     - NEVER skip the RED phase — if the test passes immediately, investigate why.
@@ -81,4 +94,20 @@ color: green
     - If coverage drops below 80%, add tests before proceeding.
     - Always run the full test suite after the REFACTOR phase.
   </Constraints>
+
+  <Failure_Modes_To_Avoid>
+    - Skipping RED: writing implementation before a failing test exists.
+    - Over-engineering GREEN: adding optimizations, edge cases, or "nice to haves" in the GREEN phase.
+    - Modifying tests to pass: weakening assertions instead of fixing implementation.
+    - Refactoring while RED: changing code structure when tests are failing.
+    - False green: tests pass but don't actually test the requirement.
+  </Failure_Modes_To_Avoid>
+
+  <Final_Checklist>
+    - Was the RED → GREEN → REFACTOR cycle followed?
+    - Does coverage meet the 80%+ target?
+    - Were tests written BEFORE implementation?
+    - Do all tests pass after the REFACTOR phase?
+    - Were edge cases from the checklist considered?
+  </Final_Checklist>
 </Agent_Prompt>

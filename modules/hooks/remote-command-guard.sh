@@ -37,29 +37,21 @@ fi
 
 INPUT=$(cat)
 
-# 명령어 추출
-COMMAND=$(echo "$INPUT" | $PYTHON_CMD -c '
-import sys, json
-try:
-    data = json.load(sys.stdin)
-    print(data.get("tool_input", {}).get("command", ""))
-except Exception:
-    pass
-' 2>/dev/null)
-
-if [[ -z "$COMMAND" ]]; then
-    exit 0
-fi
-
-# 환경변수로 명령어 전달 → Python 검사 로직
-export _GUARD_CMD="$COMMAND"
-
-$PYTHON_CMD << 'GUARD_SCRIPT'
-import os
+echo "$INPUT" | $PYTHON_CMD << 'GUARD_SCRIPT'
 import sys
+import json
 import re
 
-command = os.environ.get("_GUARD_CMD", "")
+input_json = sys.stdin.read()
+if not input_json:
+    sys.exit(0)
+
+try:
+    data = json.loads(input_json)
+except Exception:
+    sys.exit(0)
+
+command = data.get("tool_input", {}).get("command", "")
 if not command:
     sys.exit(0)
 
@@ -132,7 +124,7 @@ if not blocked_reason:
         r'\bncat\s',
         r'\bnetcat\s',
         r'\btelnet\s',
-        r'\bssh\s',
+        r'\bssh\s+(?!.*git)',
         r'\bscp\s',
         r'\brsync\s.*:',
         r'\bftp\s',
@@ -186,7 +178,7 @@ if not blocked_reason:
 if not blocked_reason:
     injection_patterns = [
         r'\beval\s',
-        r'\bexec\s',
+        r'(?<!\bdocker\s)\bexec\s',
         r'\bsource\s+/dev/',
         r'\bbash\s+-c\s.*\$\(',
         r'\bsh\s+-c\s.*\$\(',

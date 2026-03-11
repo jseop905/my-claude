@@ -29,20 +29,18 @@ fi
 # stdin에서 JSON 읽기
 INPUT=$(cat)
 
-# 환경변수로 전달하여 Python에서 처리
-export _FILTER_INPUT="$INPUT"
 export _SECURITY_LOG="${HOME}/.claude/security.log"
 
-$PYTHON_CMD << 'FILTER_SCRIPT'
-import os
+echo "$INPUT" | $PYTHON_CMD << 'FILTER_SCRIPT'
 import sys
 import json
 import re
+import os
 import base64
 import urllib.parse
 from datetime import datetime
 
-input_json = os.environ.get("_FILTER_INPUT", "")
+input_json = sys.stdin.read()
 security_log = os.environ.get("_SECURITY_LOG", "")
 
 if not input_json:

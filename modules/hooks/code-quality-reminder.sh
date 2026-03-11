@@ -45,6 +45,22 @@ case "$FILE_PATH" in
         ;;
 esac
 
+# Rate-limiting: 60초 이내 중복 발동 방지
+TEMP_BASE="${TEMP:-${TMP:-${HOME}/.claude/tmp}}"
+MARKER_DIR="${TEMP_BASE}/code-quality-markers"
+mkdir -p "$MARKER_DIR" 2>/dev/null
+MARKER_FILE="$MARKER_DIR/last-reminder"
+
+if [[ -f "$MARKER_FILE" ]]; then
+    LAST_TIME=$(cat "$MARKER_FILE" 2>/dev/null || echo "0")
+    CURRENT_TIME=$($PYTHON_CMD -c "import time; print(int(time.time()))" 2>/dev/null || echo "0")
+    if [[ $((CURRENT_TIME - LAST_TIME)) -lt 60 ]]; then
+        exit 0
+    fi
+fi
+
+$PYTHON_CMD -c "import time; print(int(time.time()))" > "$MARKER_FILE" 2>/dev/null
+
 echo "[code-quality] 수정된 파일의 에러 핸들링, 불변성 패턴, 입력 검증을 확인하세요." >&2
 
 exit 0

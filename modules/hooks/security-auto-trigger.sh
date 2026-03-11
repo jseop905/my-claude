@@ -20,6 +20,7 @@ INPUT=$(cat)
 
 # 임시 파일 경로 (Windows 대응: /tmp → $TEMP 또는 $HOME/.claude/tmp)
 TEMP_BASE="${TEMP:-${TMP:-${HOME}/.claude/tmp}}"
+export _MARKER_DIR="${TEMP_BASE}/security-markers"
 
 RESULT=$(echo "$INPUT" | $PYTHON_CMD -c "
 import sys, json, os, re
