@@ -4,7 +4,7 @@
 
 ## Available Agents
 
-`~/.claude/agents/` 에 위치:
+`.claude/agents/` 에 위치 (프로젝트 루트 기준):
 
 ### 개발 에이전트
 
@@ -15,7 +15,7 @@
 | tdd-guide | 테스트 주도 개발 | opus | 새 기능, 버그 수정 |
 | code-reviewer | 코드 리뷰 | opus | 코드 작성 직후 |
 | security-reviewer | 보안 분석 | opus | 커밋 전 |
-| build-error-resolver | 빌드 에러 수정 | sonnet | 빌드 실패 시 |
+| build-error-resolver | 빌드 에러 수정 | opus | 빌드 실패 시 |
 | refactor-cleaner | 데드코드 정리 | sonnet | 코드 유지보수 |
 | verify-agent | 검증 파이프라인 | sonnet | 변경사항 검증 |
 

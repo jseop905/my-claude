@@ -37,7 +37,11 @@ fi
 
 INPUT=$(cat)
 
-echo "$INPUT" | $PYTHON_CMD << 'GUARD_SCRIPT'
+_TMPDIR="${TMPDIR:-${TEMP:-${TMP:-/tmp}}}"
+_SCRIPT_FILE=$(mktemp "${_TMPDIR}/hook-XXXXXX.py")
+trap 'rm -f "$_SCRIPT_FILE"' EXIT
+
+cat > "$_SCRIPT_FILE" << 'GUARD_SCRIPT'
 import sys
 import json
 import re
@@ -199,3 +203,5 @@ if blocked_reason:
 
 sys.exit(0)
 GUARD_SCRIPT
+
+echo "$INPUT" | $PYTHON_CMD "$_SCRIPT_FILE"

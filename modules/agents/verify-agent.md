@@ -70,7 +70,7 @@ color: cyan
   <Modes>
     | Mode | Description |
     |------|-------------|
-    | loop | Fix + retry (default, max 5 rounds) |
+    | loop | Fix + retry (default, max 3 rounds) |
     | once | Single pass, report only |
     | extract | Error listing only, no fixes |
     | coverage | Test coverage analysis |

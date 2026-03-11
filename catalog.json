@@ -21,7 +21,7 @@
       "id": "rule-git-workflow",
       "type": "rule",
       "name": "git-workflow",
-      "description": "Git 워크플로우 규칙 (Conventional Commits, /plan → /code-review → /commit 파이프라인)",
+      "description": "Git 워크플로우 규칙 (Conventional Commits, /plan → /code-review → /verify → /commit 파이프라인)",
       "path": "modules/rules/git-workflow.md",
       "tags": ["core", "quality"]
     },
@@ -125,7 +125,7 @@
       "id": "rule-testing",
       "type": "rule",
       "name": "testing",
-      "description": "TDD 워크플로우 (RED → GREEN → REFACTOR), 테스트 커버리지 80%+ 요구사항.",
+      "description": "TDD 워크플로우 (RED → GREEN → IMPROVE), 테스트 커버리지 80%+ 요구사항.",
       "path": "modules/rules/testing.md",
       "tags": ["quality", "testing"]
     },
@@ -165,7 +165,7 @@
       "id": "agent-tdd-guide",
       "type": "agent",
       "name": "tdd-guide",
-      "description": "TDD 워크플로우 가이드 에이전트. RED → GREEN → REFACTOR 순서 보장.",
+      "description": "TDD 워크플로우 가이드 에이전트. RED → GREEN → IMPROVE 순서 보장.",
       "path": "modules/agents/tdd-guide.md",
       "tags": ["quality", "testing"]
     },

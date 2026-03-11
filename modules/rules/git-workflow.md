@@ -44,7 +44,7 @@ Includes login, logout, and token refresh endpoints.
 ## Feature Implementation Workflow
 
 ```
-/plan → 구현 → /code-review → /commit
+/plan → 구현 → /code-review → /verify → /commit
 ```
 
 1. **계획 수립** (`/plan`)
@@ -63,7 +63,11 @@ Includes login, logout, and token refresh endpoints.
    - CRITICAL/HIGH 이슈 해결 필수
    - MEDIUM 이슈는 가능하면 해결
 
-4. **커밋** (`/commit`)
+4. **검증** (`/verify`)
+   - TypeCheck → Lint → Build → Test 파이프라인 실행
+   - 전체 통과 확인 후 커밋 진행
+
+5. **커밋** (`/commit`)
    - Conventional Commits 포맷
    - 변경 내역 분석 후 자동 메시지 생성
 

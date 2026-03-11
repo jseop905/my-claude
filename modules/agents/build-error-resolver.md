@@ -2,7 +2,7 @@
 name: build-error-resolver
 description: 빌드/타입 에러 자동 수정. 빌드 실패 시 최소한의 변경으로 빌드를 통과시킴.
 tools: ["Read", "Write", "Edit", "Bash", "Grep", "Glob"]
-model: sonnet
+model: opus
 color: cyan
 ---
 

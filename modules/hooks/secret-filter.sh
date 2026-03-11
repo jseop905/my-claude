@@ -31,7 +31,11 @@ INPUT=$(cat)
 
 export _SECURITY_LOG="${HOME}/.claude/security.log"
 
-echo "$INPUT" | $PYTHON_CMD << 'FILTER_SCRIPT'
+_TMPDIR="${TMPDIR:-${TEMP:-${TMP:-/tmp}}}"
+_SCRIPT_FILE=$(mktemp "${_TMPDIR}/hook-XXXXXX.py")
+trap 'rm -f "$_SCRIPT_FILE"' EXIT
+
+cat > "$_SCRIPT_FILE" << 'FILTER_SCRIPT'
 import sys
 import json
 import re
@@ -205,3 +209,5 @@ if masked_count > 0:
 # 항상 허용 (exit 0)
 sys.exit(0)
 FILTER_SCRIPT
+
+echo "$INPUT" | $PYTHON_CMD "$_SCRIPT_FILE"

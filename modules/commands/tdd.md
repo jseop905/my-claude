@@ -1,5 +1,5 @@
 ---
-description: TDD 워크플로우를 실행합니다. RED → GREEN → REFACTOR 사이클.
+description: TDD 워크플로우를 실행합니다. RED → GREEN → IMPROVE 사이클.
 ---
 
 # /tdd
@@ -45,14 +45,14 @@ description: TDD 워크플로우를 실행합니다. RED → GREEN → REFACTOR 
 ✅ GREEN: 3/3 tests passing
 ```
 
-### Step 4: REFACTOR — 개선
+### Step 4: IMPROVE — 개선
 
 1. 모든 테스트가 통과하는 상태에서만 리팩토링
 2. 코드 구조, 가독성, 성능 개선
 3. 매 변경 후 테스트 재실행 → 통과 유지 확인
 
 ```
-♻️ REFACTOR: Code improved, 3/3 tests still passing
+♻️ IMPROVE: Code improved, 3/3 tests still passing
 ```
 
 ### Step 5: 결과 보고
@@ -61,7 +61,7 @@ description: TDD 워크플로우를 실행합니다. RED → GREEN → REFACTOR 
 ## /tdd 완료
 
 - 기능: 사용자 생성 API
-- 사이클: RED → GREEN → REFACTOR ✅
+- 사이클: RED → GREEN → IMPROVE ✅
 - 테스트: 3 written (unit: 2, integration: 1)
 - 커버리지: 87%
 
