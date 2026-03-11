@@ -47,6 +47,23 @@
     ]
   },
   "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/db-guard.sh",
+            "timeout": 5000
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/remote-command-guard.sh",
+            "timeout": 5000
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "hooks": [
@@ -63,6 +80,20 @@
           {
             "type": "command",
             "command": ".claude/hooks/security-auto-trigger.sh"
+          },
+          {
+            "type": "command",
+            "command": ".claude/hooks/code-quality-reminder.sh"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-wrap-suggest.sh"
           }
         ]
       }

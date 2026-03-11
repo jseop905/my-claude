@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
+  "version": "0.2.0",
   "modules": [
     {
       "id": "rule-golden-principles",
@@ -96,6 +96,182 @@
       "description": "PostToolUse 훅 (Edit/Write). 보안 관련 파일 수정 시 /code-review 실행을 권장한다.",
       "path": "modules/hooks/security-auto-trigger.sh",
       "tags": ["security"]
+    },
+    {
+      "id": "rule-agents-v2",
+      "type": "rule",
+      "name": "agents-v2",
+      "description": "에이전트 오케스트레이션 규칙. 8개 에이전트 테이블, 다중관점 분석 프로토콜.",
+      "path": "modules/rules/agents-v2.md",
+      "tags": ["orchestration"]
+    },
+    {
+      "id": "rule-interaction",
+      "type": "rule",
+      "name": "interaction",
+      "description": "비유 우선 설명, 결론 우선 커뮤니케이션 패턴 규칙.",
+      "path": "modules/rules/interaction.md",
+      "tags": ["communication"]
+    },
+    {
+      "id": "rule-security",
+      "type": "rule",
+      "name": "security",
+      "description": "OWASP Top 10 기반 보안 체크리스트 및 보안 이슈 대응 프로토콜.",
+      "path": "modules/rules/security.md",
+      "tags": ["security"]
+    },
+    {
+      "id": "rule-testing",
+      "type": "rule",
+      "name": "testing",
+      "description": "TDD 워크플로우 (RED → GREEN → REFACTOR), 테스트 커버리지 80%+ 요구사항.",
+      "path": "modules/rules/testing.md",
+      "tags": ["quality", "testing"]
+    },
+    {
+      "id": "agent-architect",
+      "type": "agent",
+      "name": "architect",
+      "description": "시스템 설계 & 아키텍처 분석 에이전트. 읽기 전용 분석.",
+      "path": "modules/agents/architect.md",
+      "tags": ["planning", "architecture"]
+    },
+    {
+      "id": "agent-build-error-resolver",
+      "type": "agent",
+      "name": "build-error-resolver",
+      "description": "빌드/타입 에러 자동 수정 에이전트. 최소 diff, 빌드 exit 0 목표.",
+      "path": "modules/agents/build-error-resolver.md",
+      "tags": ["quality", "automation"]
+    },
+    {
+      "id": "agent-refactor-cleaner",
+      "type": "agent",
+      "name": "refactor-cleaner",
+      "description": "데드코드 정리 & 코드 통합 에이전트. 안전한 리팩토링 규칙 적용.",
+      "path": "modules/agents/refactor-cleaner.md",
+      "tags": ["quality", "refactoring"]
+    },
+    {
+      "id": "agent-security-reviewer",
+      "type": "agent",
+      "name": "security-reviewer",
+      "description": "OWASP Top 10 기반 보안 취약점 전문 탐지 에이전트.",
+      "path": "modules/agents/security-reviewer.md",
+      "tags": ["security"]
+    },
+    {
+      "id": "agent-tdd-guide",
+      "type": "agent",
+      "name": "tdd-guide",
+      "description": "TDD 워크플로우 가이드 에이전트. RED → GREEN → REFACTOR 순서 보장.",
+      "path": "modules/agents/tdd-guide.md",
+      "tags": ["quality", "testing"]
+    },
+    {
+      "id": "command-auto",
+      "type": "command",
+      "name": "auto",
+      "description": "/auto 원버튼 자동화. plan → tdd → code-review → verify-loop → commit 풀 파이프라인.",
+      "path": "modules/commands/auto.md",
+      "tags": ["automation", "pipeline"]
+    },
+    {
+      "id": "command-build-fix",
+      "type": "command",
+      "name": "build-fix",
+      "description": "/build-fix 빌드 에러 수정. build-error-resolver 에이전트 호출.",
+      "path": "modules/commands/build-fix.md",
+      "tags": ["quality", "automation"]
+    },
+    {
+      "id": "command-next-task",
+      "type": "command",
+      "name": "next-task",
+      "description": "/next-task prompt_plan.md에서 우선순위 기반 다음 태스크 추천.",
+      "path": "modules/commands/next-task.md",
+      "tags": ["planning"]
+    },
+    {
+      "id": "command-orchestrate",
+      "type": "command",
+      "name": "orchestrate",
+      "description": "/orchestrate Agent Teams 병렬 오케스트레이션. team-orchestrator 스킬 호출.",
+      "path": "modules/commands/orchestrate.md",
+      "tags": ["orchestration"]
+    },
+    {
+      "id": "command-quick-commit",
+      "type": "command",
+      "name": "quick-commit",
+      "description": "/quick-commit 작은 변경용 간소화 커밋. 3파일/20줄 초과 시 경고.",
+      "path": "modules/commands/quick-commit.md",
+      "tags": ["core"]
+    },
+    {
+      "id": "command-tdd",
+      "type": "command",
+      "name": "tdd",
+      "description": "/tdd TDD 워크플로우 실행. tdd-guide 에이전트 호출.",
+      "path": "modules/commands/tdd.md",
+      "tags": ["quality", "testing"]
+    },
+    {
+      "id": "command-verify-loop",
+      "type": "command",
+      "name": "verify-loop",
+      "description": "/verify-loop 자동 재검증 루프. verify-agent 최대 3회 반복 스폰 + 자동수정.",
+      "path": "modules/commands/verify-loop.md",
+      "tags": ["quality", "automation"]
+    },
+    {
+      "id": "hook-code-quality-reminder",
+      "type": "hook",
+      "name": "code-quality-reminder",
+      "description": "PostToolUse 훅 (Edit/Write). 코드 파일 수정 후 품질 체크 리마인더.",
+      "path": "modules/hooks/code-quality-reminder.sh",
+      "tags": ["quality"]
+    },
+    {
+      "id": "hook-db-guard",
+      "type": "hook",
+      "name": "db-guard",
+      "description": "PreToolUse 훅 (Bash). 위험 SQL 차단 (DROP, TRUNCATE, WHERE 없는 DELETE).",
+      "path": "modules/hooks/db-guard.sh",
+      "tags": ["security"]
+    },
+    {
+      "id": "hook-remote-command-guard",
+      "type": "hook",
+      "name": "remote-command-guard",
+      "description": "PreToolUse 훅 (Bash). 원격 세션에서 위험 명령어 차단.",
+      "path": "modules/hooks/remote-command-guard.sh",
+      "tags": ["security"]
+    },
+    {
+      "id": "hook-session-wrap-suggest",
+      "type": "hook",
+      "name": "session-wrap-suggest",
+      "description": "Stop 훅. 세션 종료 시 /session-wrap 실행을 제안.",
+      "path": "modules/hooks/session-wrap-suggest.sh",
+      "tags": ["automation"]
+    },
+    {
+      "id": "skill-session-wrap",
+      "type": "skill",
+      "name": "session-wrap",
+      "description": "세션 자동 정리 스킬. 4개 서브에이전트 병렬 실행 (문서 업데이트, 자동화 탐색, 학습 추출, 후속 태스크).",
+      "path": "modules/skills/session-wrap/SKILL.md",
+      "tags": ["automation"]
+    },
+    {
+      "id": "skill-team-orchestrator",
+      "type": "skill",
+      "name": "team-orchestrator",
+      "description": "Agent Teams 오케스트레이션 엔진. 다중 에이전트 병렬 실행, 충돌 방지, 결과 통합.",
+      "path": "modules/skills/team-orchestrator/SKILL.md",
+      "tags": ["orchestration"]
     }
   ]
 }

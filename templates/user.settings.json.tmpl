@@ -24,15 +24,12 @@
       "Bash(git status **)",
       "Bash(git diff **)",
       "Bash(git log **)",
-      "Bash(git branch **)",
       "Bash(git show **)",
       "Bash(git blame **)",
-      "Bash(pnpm install **)",
       "Bash(pnpm run **)",
       "Bash(pnpm test **)",
       "Bash(pnpm build **)",
       "Bash(pnpm lint **)",
-      "Bash(pnpm add **)",
       "Bash(pnpm dlx **)",
       "Bash(tsc **)",
       "Bash(eslint **)",
@@ -42,14 +39,15 @@
       "Bash(python **)",
       "Bash(python3 **)"
     ],
-    "ask": [
+    "ask": ["Bash(pnpm install **)", "Bash(pnpm add **)"],
+    "deny": [
+      "Read(./.git/**)",
       "Bash(git commit **)",
+      "Bash(git branch **)",
       "Bash(git push **)",
       "Bash(git merge **)",
       "Bash(git rebase **)",
-      "Bash(git checkout **)"
-    ],
-    "deny": [
+      "Bash(git checkout **)",
       "Bash(rm -rf **)",
       "Bash(sudo **)",
       "Bash(git push --force **)",
@@ -59,4 +57,5 @@
     ]
   }
 }
+
 ```
