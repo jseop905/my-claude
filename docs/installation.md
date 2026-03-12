@@ -44,6 +44,8 @@ cp my-claude/templates/CLAUDE.md.tmpl CLAUDE.md
 
 ## 4. 훅 실행 권한 부여 (macOS/Linux)
 
+> 플랫폼별 Python 환경 등 추가 주의사항은 [platform-notes.md](platform-notes.md)를 참고한다.
+
 ```bash
 chmod +x .claude/hooks/*.sh
 ```

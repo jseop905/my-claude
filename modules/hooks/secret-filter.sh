@@ -15,7 +15,7 @@
 # Python 경로 자동 감지 (Windows 대응)
 PYTHON_CMD=""
 for cmd in python3 python py; do
-    if command -v "$cmd" &>/dev/null; then
+    if "$cmd" -c "import sys" &>/dev/null 2>&1; then
         PYTHON_CMD="$cmd"
         break
     fi
