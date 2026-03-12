@@ -1,9 +1,9 @@
 #!/bin/bash
-# remote-command-guard.sh - PreToolUse Hook (Bash)
+# remote-command-guard.sh - PreToolUse 훅 (Bash)
 # 원격 세션에서 위험한 Bash 명령을 차단
 #
-# Hook trigger: PreToolUse, matcher: Bash
-# Exit codes: 0 = 허용, 2 = 차단
+# 트리거: PreToolUse, 매처: Bash
+# 종료 코드: 0 = 허용, 2 = 차단
 #
 # 원격 세션 감지: SSH_CONNECTION, SSH_TTY, REMOTE_SESSION 환경변수
 # 로컬 세션에서는 검사를 건너뜀
@@ -15,9 +15,9 @@
 #   4. 외부 네트워크 통신 (curl, wget, nc 등 - localhost 제외)
 #   5. 권한 변경 (chmod 777, sudo 등)
 #   6. 프로세스 종료/시스템 제어 (kill -9, shutdown 등)
-#   7. 명령 주입 (eval, exec, pipe to sh 등)
+#   7. 명령 주입 (eval, exec, sh로 파이프 등)
 
-# 원격 세션이 아니면 검사 건너뜀
+# 로컬 세션이면 검사 건너뜀
 if [[ -z "${SSH_CONNECTION:-}" && -z "${SSH_TTY:-}" && -z "${REMOTE_SESSION:-}" ]]; then
     exit 0
 fi
@@ -59,7 +59,7 @@ command = data.get("tool_input", {}).get("command", "")
 if not command:
     sys.exit(0)
 
-# 명령어 정규화
+# 명령 정규화
 cmd = re.sub(r'\s+', ' ', command.strip())
 cmd_lower = cmd.lower()
 
@@ -136,7 +136,7 @@ if not blocked_reason:
         r'\bsocat\s',
         r'\bnpm\s+publish\b',
     ]
-    # localhost/127.0.0.1 대상은 허용 (개발용)
+    # localhost/127.0.0.1 대상은 허용 (로컬 개발용)
     is_local = bool(re.search(
         r'\b(curl|wget)\s+.*\b(localhost|127\.0\.0\.1|0\.0\.0\.0)\b', cmd_lower
     ))

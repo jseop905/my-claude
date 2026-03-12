@@ -24,17 +24,27 @@
 - 네이밍: {camelCase / snake_case / PascalCase}
 - 컨벤션 문서: `{docs/conventions.md 또는 해당 없음}`
 
+## 명령어
+
+| 명령어 | 설명 |
+|--------|------|
+| `/plan` | 구현 계획 수립 (3개 이상 파일 변경 시 필수) |
+| `/code-review` | 코드 리뷰 (Stage 1: 스펙 준수 → Stage 2: 품질) |
+| `/verify` | 빌드/테스트/린트 검증 |
+| `/verify-loop` | 반복 검증 + 자동수정 (최대 3회 재시도) |
+| `/commit` | Conventional Commits 형식 커밋 |
+| `/auto` | 순차 풀 파이프라인 (plan → tdd → review → verify → commit) |
+| `/orchestrate` | 다중 에이전트 병렬 실행 (웨이브 기반) |
+| `/tdd` | TDD 워크플로우 (RED → GREEN → IMPROVE) |
+| `/build-fix` | 빌드 에러 자동 수정 |
+| `/next-task` | prompt_plan.md에서 다음 태스크 추천 |
+| `/session-wrap` | 세션 종료 시 자동 정리 (문서 업데이트, 학습 추출) |
+
 ## 작업 규칙
 
-- `/plan`으로 계획 수립 후 구현 (3개 이상 파일 변경 시 필수)
-- 구현 완료 후 `/code-review`로 리뷰
-- `/commit`으로 Conventional Commits 형식 커밋
 - 한 세션 = 한 작업 (컨텍스트 50% 넘으면 새 세션)
-- `/auto`로 풀 파이프라인 자동 실행 (plan → tdd → review → verify → commit)
-- `/tdd`로 TDD 워크플로우 실행 (RED → GREEN → IMPROVE)
-- `/verify-loop`으로 빌드/테스트 반복 검증 (최대 3회 재시도 + 자동수정)
-- `/build-fix`로 빌드 에러 자동 수정
-- `/orchestrate`로 다중 에이전트 병렬 실행
+- 3개 이상 파일 변경 시 `/plan` 필수
+- 구현 완료 후 `/code-review` → `/verify` → `/commit` 순서로 진행
 
 ## 자동 실행 훅
 

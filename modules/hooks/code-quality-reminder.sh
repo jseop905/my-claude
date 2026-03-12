@@ -1,8 +1,8 @@
 #!/bin/bash
-# code-quality-reminder.sh - PostToolUse Hook (Edit/Write)
+# code-quality-reminder.sh - PostToolUse 훅 (Edit/Write)
 # 코드 수정 후 품질 체크 리마인더를 stderr로 출력
-# Claude에게 셀프 체크를 유도하는 간결한 메시지
-# exit 0 필수 (세션 방해 금지)
+# 셀프 체크를 유도하는 간결한 메시지
+# 종료 코드 0 필수 (세션 방해 금지)
 
 # Python 경로 자동 감지 (Windows 대응)
 PYTHON_CMD=""
@@ -45,7 +45,7 @@ case "$FILE_PATH" in
         ;;
 esac
 
-# Rate-limiting: 60초 이내 중복 발동 방지
+# 쓰로틀링: 60초 이내 중복 발동 방지
 TEMP_BASE="${TEMP:-${TMP:-${HOME}/.claude/tmp}}"
 MARKER_DIR="${TEMP_BASE}/code-quality-markers"
 mkdir -p "$MARKER_DIR" 2>/dev/null

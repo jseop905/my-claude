@@ -1,9 +1,9 @@
 #!/bin/bash
-# Output Secret Filter - PostToolUse Hook
+# secret-filter.sh - PostToolUse 훅 (모든 도구)
 # 도구 실행 결과에서 시크릿을 감지하여 마스킹
 #
-# Hook trigger: PostToolUse (모든 도구)
-# Exit codes: 0 = 항상 허용 (출력만 수정)
+# 트리거: PostToolUse (모든 도구)
+# 종료 코드: 0 = 항상 허용 (출력만 수정)
 #
 # 동작 방식:
 #   - stdin으로 도구 실행 결과 JSON 수신
@@ -26,7 +26,7 @@ if [[ -z "$PYTHON_CMD" ]]; then
     exit 0
 fi
 
-# stdin에서 JSON 읽기
+# stdin으로 JSON 수신
 INPUT=$(cat)
 
 export _SECURITY_LOG="${HOME}/.claude/security.log"
@@ -55,7 +55,7 @@ try:
 except (json.JSONDecodeError, ValueError):
     sys.exit(0)
 
-# tool_result에서 출력 텍스트 추출
+# tool_result에서 텍스트 추출
 tool_result = data.get("tool_result", "")
 if isinstance(tool_result, dict):
     tool_result = json.dumps(tool_result, ensure_ascii=False)
@@ -68,47 +68,47 @@ if not tool_result:
 # 마스킹 패턴 정의 (패턴, 설명)
 SECRET_PATTERNS = [
     # API 키 패턴
-    (r'\bsk-[a-zA-Z0-9_-]{20,}\b', "OpenAI API Key"),
-    (r'\bsk-proj-[a-zA-Z0-9_-]{20,}\b', "OpenAI Project Key"),
-    (r'\bAKIA[A-Z0-9]{16,}\b', "AWS Access Key"),
-    (r'\bxoxb-[a-zA-Z0-9-]{20,}\b', "Slack Bot Token"),
-    (r'\bxoxp-[a-zA-Z0-9-]{20,}\b', "Slack User Token"),
+    (r'\bsk-[a-zA-Z0-9_-]{20,}\b', "OpenAI API 키"),
+    (r'\bsk-proj-[a-zA-Z0-9_-]{20,}\b', "OpenAI 프로젝트 키"),
+    (r'\bAKIA[A-Z0-9]{16,}\b', "AWS 액세스 키"),
+    (r'\bxoxb-[a-zA-Z0-9-]{20,}\b', "Slack 봇 토큰"),
+    (r'\bxoxp-[a-zA-Z0-9-]{20,}\b', "Slack 사용자 토큰"),
     (r'\bghp_[a-zA-Z0-9]{36,}\b', "GitHub PAT"),
-    (r'\bghs_[a-zA-Z0-9]{36,}\b', "GitHub App Token"),
-    (r'\bgho_[a-zA-Z0-9]{36,}\b', "GitHub OAuth Token"),
-    (r'\bghu_[a-zA-Z0-9]{36,}\b', "GitHub User Token"),
-    (r'\bgithub_pat_[a-zA-Z0-9_]{20,}\b', "GitHub Fine-grained PAT"),
+    (r'\bghs_[a-zA-Z0-9]{36,}\b', "GitHub 앱 토큰"),
+    (r'\bgho_[a-zA-Z0-9]{36,}\b', "GitHub OAuth 토큰"),
+    (r'\bghu_[a-zA-Z0-9]{36,}\b', "GitHub 사용자 토큰"),
+    (r'\bgithub_pat_[a-zA-Z0-9_]{20,}\b', "GitHub 세분화 PAT"),
     (r'\bglpat-[a-zA-Z0-9_-]{20,}\b', "GitLab PAT"),
-    (r'\bnpm_[a-zA-Z0-9]{36,}\b', "NPM Token"),
+    (r'\bnpm_[a-zA-Z0-9]{36,}\b', "NPM 토큰"),
 
     # Bearer/Auth 토큰
-    (r'(?i)\bBearer\s+[a-zA-Z0-9_.-]{20,}\b', "Bearer Token"),
-    (r'(?i)\btoken=[a-zA-Z0-9_.-]{20,}\b', "Token Parameter"),
-    (r'(?i)\bauth=[a-zA-Z0-9_.-]{20,}\b', "Auth Parameter"),
-    (r'(?i)\bapi[_-]?key=[a-zA-Z0-9_.-]{20,}\b', "API Key Parameter"),
+    (r'(?i)\bBearer\s+[a-zA-Z0-9_.-]{20,}\b', "Bearer 토큰"),
+    (r'(?i)\btoken=[a-zA-Z0-9_.-]{20,}\b', "토큰 파라미터"),
+    (r'(?i)\bauth=[a-zA-Z0-9_.-]{20,}\b', "인증 파라미터"),
+    (r'(?i)\bapi[_-]?key=[a-zA-Z0-9_.-]{20,}\b', "API 키 파라미터"),
 
     # 비밀번호/시크릿 패턴
-    (r'(?i)\bpassword=[^\s&]{8,}\b', "Password Parameter"),
-    (r'(?i)\bpasswd=[^\s&]{8,}\b', "Password Parameter"),
-    (r'(?i)\bsecret=[^\s&]{20,}\b', "Secret Parameter"),
+    (r'(?i)\bpassword=[^\s&]{8,}\b', "비밀번호 파라미터"),
+    (r'(?i)\bpasswd=[^\s&]{8,}\b', "비밀번호 파라미터"),
+    (r'(?i)\bsecret=[^\s&]{20,}\b', "시크릿 파라미터"),
 
     # 환경변수 값 (KEY=VALUE)
-    (r'(?i)\bAWS_SECRET_ACCESS_KEY=[^\s]{20,}\b', "AWS Secret Key"),
-    (r'(?i)\bOPENAI_API_KEY=[^\s]{20,}\b', "OpenAI Key Value"),
-    (r'(?i)\bANTHROPIC_API_KEY=[^\s]{20,}\b', "Anthropic Key Value"),
-    (r'(?i)\bGITHUB_TOKEN=[^\s]{20,}\b', "GitHub Token Value"),
-    (r'(?i)\bDATABASE_URL=[^\s]{20,}\b', "Database URL Value"),
+    (r'(?i)\bAWS_SECRET_ACCESS_KEY=[^\s]{20,}\b', "AWS 시크릿 키"),
+    (r'(?i)\bOPENAI_API_KEY=[^\s]{20,}\b', "OpenAI 키 값"),
+    (r'(?i)\bANTHROPIC_API_KEY=[^\s]{20,}\b', "Anthropic 키 값"),
+    (r'(?i)\bGITHUB_TOKEN=[^\s]{20,}\b', "GitHub 토큰 값"),
+    (r'(?i)\bDATABASE_URL=[^\s]{20,}\b', "데이터베이스 URL 값"),
 
-    # Private Key 블록
-    (r'-----BEGIN (?:RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----', "Private Key"),
+    # 개인 키 블록
+    (r'-----BEGIN (?:RSA |EC |DSA |OPENSSH )?PRIVATE KEY-----', "개인 키"),
 
     # 긴 Base64 시크릿 (key/secret/token 컨텍스트)
-    (r'(?i)(?:key|secret|token|password|credential|auth)[\s=:]+["\']?[a-zA-Z0-9+/]{40,}={0,2}["\']?', "Potential Base64 Secret"),
+    (r'(?i)(?:key|secret|token|password|credential|auth)[\s=:]+["\']?[a-zA-Z0-9+/]{40,}={0,2}["\']?', "Base64 인코딩 시크릿 추정"),
 ]
 
 
 def decode_layers(text):
-    """base64, URL 인코딩을 디코딩하여 숨겨진 시크릿을 탐지"""
+    """Base64, URL 인코딩을 디코딩하여 숨겨진 시크릿 탐지"""
     decoded_variants = []
     # base64 디코딩 시도
     b64_pattern = re.compile(r'[A-Za-z0-9+/]{20,}={0,2}')
@@ -130,7 +130,7 @@ def decode_layers(text):
 
 
 def mask_match(original):
-    """매칭된 문자열을 마스킹"""
+    """매칭된 문자열 마스킹"""
     if len(original) > 16:
         return original[:8] + "***MASKED***" + original[-4:]
     return original[:4] + "***MASKED***"
@@ -140,7 +140,7 @@ masked_output = tool_result
 masked_count = 0
 masked_types = []
 
-# Layer 1: 원본 텍스트에서 직접 매칭
+# 1계층: 원본 텍스트에서 직접 매칭
 for pattern, desc in SECRET_PATTERNS:
     matches = list(re.finditer(pattern, masked_output))
     if matches:
@@ -151,12 +151,12 @@ for pattern, desc in SECRET_PATTERNS:
         if desc not in masked_types:
             masked_types.append(desc)
 
-# Layer 2 & 3: 인코딩 우회 탐지
+# 2·3계층: 인코딩 우회 탐지
 decoded_variants = decode_layers(tool_result)
 for decoded_text in decoded_variants:
     for pattern, desc in SECRET_PATTERNS:
         if re.search(pattern, decoded_text):
-            # Base64 인코딩된 시크릿 마스킹
+            # Base64로 인코딩된 시크릿 마스킹
             b64_pattern = re.compile(r'[A-Za-z0-9+/]{20,}={0,2}')
             for m in b64_pattern.finditer(masked_output):
                 try:
@@ -170,7 +170,7 @@ for decoded_text in decoded_variants:
                         break
                 except Exception:
                     pass
-            # URL 인코딩된 시크릿 마스킹
+            # URL로 인코딩된 시크릿 마스킹
             try:
                 url_decoded = urllib.parse.unquote(masked_output)
                 if url_decoded != masked_output and re.search(pattern, url_decoded):
@@ -186,10 +186,10 @@ for decoded_text in decoded_variants:
                 pass
 
 if masked_count > 0:
-    # 마스킹된 출력을 stdout으로 전달
+    # 마스킹된 결과를 stdout으로 출력
     print(masked_output)
 
-    # 보안 로그 기록 (값 자체는 기록하지 않음)
+    # 보안 로그 기록 (시크릿 값 자체는 기록하지 않음)
     if security_log:
         try:
             log_dir = os.path.dirname(security_log)
@@ -206,7 +206,7 @@ if masked_count > 0:
         except (IOError, OSError):
             pass
 
-# 항상 허용 (exit 0)
+# 항상 허용 (종료 코드 0)
 sys.exit(0)
 FILTER_SCRIPT
 

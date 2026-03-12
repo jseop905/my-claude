@@ -1,8 +1,8 @@
 #!/bin/bash
-# session-wrap-suggest.sh - Stop Hook
+# session-wrap-suggest.sh - Stop 훅
 # 세션이 충분히 진행된 후 /session-wrap 실행을 제안
 # 세션당 1회만 표시
-# exit 0 필수
+# 종료 코드 0 필수
 
 # Python 경로 자동 감지 (Windows 대응)
 PYTHON_CMD=""
@@ -19,7 +19,7 @@ fi
 
 INPUT=$(cat)
 
-# 임시 파일 경로 (Windows 대응: /tmp → $TEMP 또는 $HOME/.claude/tmp)
+# 임시 파일 경로 (Windows 대응)
 TEMP_BASE="${TEMP:-${TMP:-${HOME}/.claude/tmp}}"
 export _MARKER_DIR="${TEMP_BASE}/session-wrap-markers"
 
@@ -44,7 +44,7 @@ marker = os.path.join(marker_dir, f'wrap-suggested-{sid}')
 if os.path.exists(marker):
     sys.exit(0)
 
-# 세션 통계 확인 (Claude Code 내부 통계 파일)
+# 세션 통계 확인
 # 통계 파일이 없으면 마커 파일 존재 여부로 대체 판단
 stats_file = os.path.expanduser('~/.claude/.session-stats.json')
 total_calls = 0
@@ -68,7 +68,7 @@ if total_calls < 30:
 # 마커 생성 (세션당 1회)
 open(marker, 'w').close()
 
-# Stop 훅 형식으로 JSON 출력
+# 훅 형식으로 JSON 출력
 print(json.dumps({
     'continue': True,
     'systemMessage': '[Session Wrap] 이번 세션에서 상당한 작업이 진행되었습니다. '

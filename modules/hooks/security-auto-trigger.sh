@@ -1,7 +1,7 @@
 #!/bin/bash
-# security-auto-trigger.sh - PostToolUse Hook (Edit/Write)
+# security-auto-trigger.sh - PostToolUse 훅 (Edit/Write)
 # 보안 관련 파일 수정 감지 시 /code-review 실행 제안
-# exit 0 필수 (차단하지 않음, 제안만)
+# 종료 코드 0 필수 (차단하지 않음, 제안만)
 
 # Python 경로 자동 감지 (Windows 대응)
 PYTHON_CMD=""
@@ -18,7 +18,7 @@ fi
 
 INPUT=$(cat)
 
-# 임시 파일 경로 (Windows 대응: /tmp → $TEMP 또는 $HOME/.claude/tmp)
+# 임시 파일 경로 (Windows 대응)
 TEMP_BASE="${TEMP:-${TMP:-${HOME}/.claude/tmp}}"
 export _MARKER_DIR="${TEMP_BASE}/security-markers"
 
@@ -88,7 +88,7 @@ if os.path.exists(marker):
     sys.exit(0)
 open(marker, 'w').close()
 
-# stdout로 매칭 결과 출력
+# 매칭 결과를 stdout으로 출력
 basename = os.path.basename(file_path)
 print(f'{basename}|{matched_pattern}')
 " 2>/dev/null)

@@ -30,7 +30,8 @@ color: cyan
 
   <Constraints>
     - Maximum 10 files modified per round.
-    - Auto-fix retry limit: 3 attempts for same error before stopping.
+    - Auto-fix retry limit: 1 retry per error. If the same error persists after 1 fix attempt, classify as Non-Fixable and stop.
+    - Maximum 3 rounds for the full verification pipeline (TypeCheck → Lint → Build → Test).
     - Non-fixable errors are reported only, never attempted.
     - No approval without fresh evidence. Reject if: words like "should/probably/seems to" used, no fresh test output, claims without results.
     - Parent context is never directly accessed (results only returned via structured output).
@@ -64,13 +65,14 @@ color: cyan
     4) Auto-Fix (Loop Mode):
        a) Attempt fix for Fixable errors
        b) Re-run failed verification step
-       c) If same error 3 times → stop and report
+       c) If same error persists after 1 retry → classify as Non-Fixable and stop
+       d) Maximum 3 rounds for the full pipeline
   </Investigation_Protocol>
 
   <Modes>
     | Mode | Description |
     |------|-------------|
-    | loop | Fix + retry (default, max 3 rounds) |
+    | loop | Fix + retry (default, max 3 rounds, 1 retry per error) |
     | once | Single pass, report only |
     | extract | Error listing only, no fixes |
     | coverage | Test coverage analysis |
@@ -137,7 +139,7 @@ color: cyan
   <Final_Checklist>
     - Did I run verification steps in correct order (TypeCheck → Lint → Build → Test)?
     - Did I classify all errors as Fixable or Non-Fixable?
-    - Did I respect the retry limit (3 attempts per error)?
+    - Did I respect the retry limit (1 retry per error, 3 rounds max)?
     - Did I modify no more than 10 files?
     - Did I return structured output (PASS / FAIL / EXTRACT / COVERAGE)?
     - Did I record SHA for verification baseline?

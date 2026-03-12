@@ -236,12 +236,12 @@ for member in team:
 3. 다른 에이전트는 충돌 파일 수정 금지
 ```
 
-### 의존성 데드락
+### 순환 의존성 처리
 
 ```
-1. 순환 의존성 감지
-2. 의존성 체인에서 가장 독립적인 Task 우선 실행
-3. 리더가 수동으로 의존성 해소
+1. DAG 구축 후 위상 정렬(Topological Sort) 실패 시 순환 노드 목록 보고
+2. AskUserQuestion으로 순환에 포함된 태스크와 의존성을 보여주고, 어떤 의존성을 끊을지 사용자에게 확인
+3. 사용자 결정에 따라 의존성 제거 후 재실행
 ```
 
 ---
@@ -254,6 +254,50 @@ for member in team:
 1. prompt_plan.md 기반 작업 분해
 2. 팀 구성 및 작업 배정
 3. 실행 및 결과 집계
+
+### 팀 구성 문서 (team-config.md)
+
+사용자가 프로젝트별 팀 구성을 사전에 정의하여 `/orchestrate` 실행 시 전달할 수 있다.
+프로젝트 루트 또는 `.claude/` 디렉터리에 `team-config.md`를 작성하면, 오케스트레이터가 이를 참조하여 팀을 구성한다.
+파일이 없으면 위 "Team Composition" 섹션의 기본 역할 템플릿을 사용한다.
+
+**team-config.md 형식:**
+
+```markdown
+# Team Configuration
+
+## 역할 정의
+
+### Backend Dev
+- **subagent_type:** general-purpose
+- **담당:** API 엔드포인트, DB 스키마, 비즈니스 로직
+- **소유 파일:** src/api/**, src/models/**, src/services/**
+- **프롬프트:**
+  Implement the backend for [TASK]. You own all files under src/api/, src/models/, src/services/.
+  Follow the existing patterns in the codebase. Use immutable data patterns.
+  Do NOT modify any files outside your ownership scope.
+  Expected output: working API endpoints with input validation and error handling.
+
+### Frontend Dev
+- **subagent_type:** general-purpose
+- **담당:** UI 컴포넌트, 페이지, 상태 관리
+- **소유 파일:** src/components/**, src/pages/**, src/hooks/**
+- **프롬프트:**
+  Implement the frontend for [TASK]. You own all files under src/components/, src/pages/, src/hooks/.
+  Use the project's component patterns. Ensure accessibility (aria labels, keyboard nav).
+  Do NOT modify any files outside your ownership scope.
+  Expected output: working UI components with proper state management.
+
+### QA Engineer
+- **subagent_type:** general-purpose
+- **담당:** 테스트 작성, 통합 검증
+- **소유 파일:** tests/**, __tests__/**
+- **프롬프트:**
+  Write tests for [TASK]. You own all files under tests/ and __tests__/.
+  Cover happy path, edge cases, and error scenarios. Target 80%+ coverage.
+  Do NOT modify source files — only test files.
+  Expected output: passing test suite with coverage report.
+```
 
 ### /verify 연동
 

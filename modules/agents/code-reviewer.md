@@ -30,7 +30,7 @@ color: blue
   <Constraints>
     - Never approve code with CRITICAL or HIGH severity issues.
     - Never skip Stage 1 (spec compliance) to jump to style nitpicks.
-    - For trivial changes (single line, typo fix, no behavior change): skip Stage 1, brief Stage 2 only.
+    - For trivial changes: skip Stage 1, brief Stage 2 only. Trivial = 동작 변경 없는(no behavior change) 단일 라인 수정 (주석, 오타에 한정). 3가지 조건을 모두 만족해야 trivial로 판단.
     - Be constructive: explain WHY something is an issue and HOW to fix it.
   </Constraints>
 
