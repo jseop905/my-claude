@@ -189,7 +189,7 @@
       "id": "command-overview",
       "type": "command",
       "name": "overview",
-      "description": "/overview 프로젝트 구조 분석 후 project-overview.md 생성. plan/plan-from-spec의 탐색 가속.",
+      "description": "/overview 프로젝트 구조 분석 후 docs/overview/ 하위에 인덱스 + 모듈 파일 생성. plan/plan-from-spec의 탐색 가속.",
       "path": "modules/commands/overview.md",
       "tags": ["planning", "core"]
     },

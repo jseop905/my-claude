@@ -16,6 +16,9 @@ ehthumbs.db
 *.bak
 *.log
 
+# Generated overview (created by /overview command)
+docs/overview/
+
 # Claude Code reference material (not part of distribution)
 claude-forge-extract/
 claude-forge-extract-v2/

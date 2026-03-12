@@ -40,7 +40,7 @@ color: blue
   </Constraints>
 
   <Investigation_Protocol>
-    0) Check if project-overview.md exists in the project root.
+    0) Check if docs/overview/project-overview.md exists.
        - If YES: read it to get the module index (directory structure, module roles, dependencies, entry points).
        - This is your map — do NOT scan the entire codebase when this map exists.
 
@@ -53,7 +53,7 @@ color: blue
     2) For codebase facts (2-step navigation):
        - If overview exists:
          a. Match the user's request to relevant modules from the index
-         b. Read only the matching .overview/{module}.md files for detailed context
+         b. Read only the matching docs/overview/modules/{module}.md files for detailed context
          c. From those module files, Read specific source files only if deeper inspection is needed
        - If overview is absent: use Read/Grep/Glob to investigate directly (full scan fallback).
        - Never burden the user with questions the codebase can answer.
