@@ -189,9 +189,7 @@ my-claude/
 │   ├── settings.json.tmpl          # 프로젝트 권한/훅 설정 템플릿
 │   ├── global.settings.json.tmpl   # 전역 설정 템플릿 (~/.claude/settings.json)
 │   └── CLAUDE.md.tmpl              # 프로젝트 설명 템플릿
-├── catalog.json                    # 모듈 메타데이터 (33개 + 템플릿 3개)
-└── docs/
-    └── architecture.md             # 아키텍처 문서
+└── catalog.json                    # 모듈 메타데이터 (모듈 33개 + 템플릿 3개)
 ```
 
 ## 업데이트
@@ -223,7 +221,7 @@ cp modules/rules/*.md /path/to/your-project/.claude/rules/
 
 - Rules 4개 추가 (agents-v2, interaction, security, testing)
 - Agents 5개 추가 (architect, build-error-resolver, refactor-cleaner, security-reviewer, tdd-guide)
-- Commands 7개 추가 (/auto, /build-fix, /next-task, /orchestrate, /tdd, /verify-loop)
+- Commands 6개 추가 (/auto, /build-fix, /next-task, /orchestrate, /tdd, /verify-loop)
 - Hooks 4개 추가 (code-quality-reminder, db-guard, remote-command-guard, session-wrap-suggest)
 - Skills 2개 추가 (session-wrap, team-orchestrator)
 - settings.json.tmpl에 PreToolUse/Stop 훅 등록
