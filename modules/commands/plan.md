@@ -24,9 +24,9 @@ planner 에이전트를 호출하여 구현 계획을 작성한다.
 ## 확인 후 처리
 
 사용자가 계획을 확인하면:
-1. `prompt_plan.md`에 계획 저장
+1. `docs/plans/prompt_plan.md`에 계획 저장
 2. 기존 파일이 있으면 "## 이전 계획" 섹션으로 아카이브 후 덮어쓰기
-3. 안내: "계획이 prompt_plan.md에 저장되었습니다."
+3. 안내: "계획이 docs/plans/prompt_plan.md에 저장되었습니다."
 
 ## 수정 요청
 

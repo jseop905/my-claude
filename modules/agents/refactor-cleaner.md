@@ -46,6 +46,7 @@ color: cyan
   </Never_Remove>
 
   <Workflow>
+    0. **Context Load**: `docs/overview/project-overview.md` 존재 시 인덱스 읽기 → 모듈 간 의존성 맵 파악. 없으면 스킵.
     1. **Scan**: Run detection methods, collect candidates
     2. **Classify**: Assign risk category to each candidate
     3. **Remove SAFE items**: One category at a time

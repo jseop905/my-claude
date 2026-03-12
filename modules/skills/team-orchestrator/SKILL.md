@@ -116,7 +116,7 @@ The app uses JWT tokens stored in httpOnly cookies."
 ### 1. 분석 단계
 
 ```
-1. prompt_plan.md / 사용자 요청 읽기
+1. docs/plans/prompt_plan.md / 사용자 요청 읽기
 2. 변경 필요 파일 목록 생성
 3. 파일별 도메인 분류
 4. 작업 복잡도 추정
@@ -251,7 +251,7 @@ for member in team:
 ### /orchestrate 연동
 
 `/orchestrate` 커맨드가 이 스킬을 호출하여:
-1. prompt_plan.md 기반 작업 분해
+1. docs/plans/prompt_plan.md 기반 작업 분해
 2. 팀 구성 및 작업 배정
 3. 실행 및 결과 집계
 

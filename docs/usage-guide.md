@@ -66,7 +66,7 @@ docs/overview/
 
 ### /plan-from-spec
 
-기획 문서(spec, PRD, 기획서)를 읽어 `prompt_plan.md` 형식의 구현 계획으로 변환한다.
+기획 문서(spec, PRD, 기획서)를 읽어 `docs/plans/prompt_plan.md` 형식의 구현 계획으로 변환한다.
 
 ```
 /plan-from-spec docs/spec.md                       # 전체 변환
@@ -80,7 +80,7 @@ docs/overview/
 1. 기획 문서를 읽고 요구사항 추출 (기능/비기능/우선순위/의존성)
 2. `docs/overview/` 있으면 인덱스 기반으로 코드베이스 매핑, 없으면 전체 스캔
 3. 요구사항을 마일스톤으로 분할 (마일스톤당 3-8개 태스크)
-4. `prompt_plan.md` 형식으로 생성
+4. `docs/plans/prompt_plan.md` 형식으로 생성
 5. 사용자 확인 후 저장
 
 **모호함 처리:**
@@ -99,7 +99,7 @@ docs/overview/
 
 **참고:**
 - 기획 문서를 충실히 반영 — 임의로 기능 추가/삭제 금지
-- 기존 `prompt_plan.md`가 있으면 "Previous Plan" 섹션으로 아카이브
+- 기존 `docs/plans/prompt_plan.md`가 있으면 "Previous Plan" 섹션으로 아카이브
 
 ---
 
@@ -115,13 +115,13 @@ docs/overview/
 1. 사용자 요청을 분석하고 코드베이스를 자동 조사
 2. 우선순위/범위에 대해서만 질문 (코드베이스 관련 질문은 직접 조사)
 3. 3~6단계 구현 계획 생성
-4. 사용자 승인 후 `prompt_plan.md`에 저장
+4. 사용자 승인 후 `docs/plans/prompt_plan.md`에 저장
 
 **사용 시점:** 3개 이상 파일을 변경하는 작업 전.
 
 **참고:**
 - 승인 전까지 코드 작성 없음
-- 기존 `prompt_plan.md`가 있으면 "이전 계획" 섹션으로 아카이브
+- 기존 `docs/plans/prompt_plan.md`가 있으면 "이전 계획" 섹션으로 아카이브
 - 계획 수정 시 "modify: [내용]" 또는 "Phase 2를 먼저 진행" 등으로 요청
 
 ---
@@ -260,7 +260,7 @@ docs/overview/
 
 ### /next-task
 
-`prompt_plan.md`에서 진행 상황을 파악하고 다음 태스크를 추천한다.
+`docs/plans/prompt_plan.md`에서 진행 상황을 파악하고 다음 태스크를 추천한다.
 
 ```
 /next-task           # 자동 추천
@@ -268,7 +268,7 @@ docs/overview/
 ```
 
 **동작 흐름:**
-1. `prompt_plan.md`와 `git status`로 현재 진행 상황 파악
+1. `docs/plans/prompt_plan.md`와 `git status`로 현재 진행 상황 파악
 2. 진행률 표시 (완료/진행중/미시작)
 3. 의존성이 해결된 태스크 중 다음 작업 추천
 4. 복잡도(Small/Medium/Large)와 추천 워크플로우 제안
@@ -280,7 +280,7 @@ docs/overview/
 | Medium | 3~5개 | /auto feature |
 | Large | 6개+ | /plan 먼저 → 분할 |
 
-**참고:** `prompt_plan.md`가 없으면 `/plan`으로 먼저 계획을 수립하라고 안내한다.
+**참고:** `docs/plans/prompt_plan.md`가 없으면 `/plan`으로 먼저 계획을 수립하라고 안내한다.
 
 ---
 
@@ -295,7 +295,7 @@ docs/overview/
 ```
 
 **동작 흐름:**
-1. `prompt_plan.md`에서 태스크 추출 → 의존성 그래프(DAG) 구축
+1. `docs/plans/prompt_plan.md`에서 태스크 추출 → 의존성 그래프(DAG) 구축
 2. 의존성 없는 태스크끼리 웨이브(병렬 실행 그룹)로 묶음
 3. 모드별 에이전트 팀 구성 후 웨이브 단위로 병렬 실행
 4. 결과 통합 및 충돌 해결

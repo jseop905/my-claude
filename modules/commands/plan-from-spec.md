@@ -1,10 +1,10 @@
 ---
-description: 기획 문서를 읽고 prompt_plan.md로 변환합니다.
+description: 기획 문서를 읽고 docs/plans/prompt_plan.md로 변환합니다.
 ---
 
 # /plan-from-spec
 
-> 기획 문서(spec, PRD, 기획서)를 읽어 prompt_plan.md 형식의 구현 계획으로 변환.
+> 기획 문서(spec, PRD, 기획서)를 읽어 docs/plans/prompt_plan.md 형식의 구현 계획으로 변환.
 > 변환 후 `/auto`, `/orchestrate`, `/next-task`로 바로 연결 가능.
 
 ## 사용법
@@ -114,9 +114,9 @@ Step 1 진입 전에 반드시 수행:
 - 없으면: 의존성 그래프 기반으로 자동 분할
 - 마일스톤당 3-8개 태스크가 적정
 
-### Step 5: prompt_plan.md 생성
+### Step 5: docs/plans/prompt_plan.md 생성
 
-아래 형식으로 `prompt_plan.md` 작성:
+아래 형식으로 `docs/plans/prompt_plan.md` 작성:
 
 ```markdown
 # Implementation Plan: [프로젝트/기능명]
@@ -168,7 +168,7 @@ Status: pending
    - 각 마일스톤의 핵심 내용 1줄 요약
    - 기획서에서 해석이 모호했던 항목 (있으면)
 2. 사용자 확인 대기
-3. 확인되면 `prompt_plan.md`에 저장
+3. 확인되면 `docs/plans/prompt_plan.md`에 저장
 
 ## 모호함 처리
 
@@ -184,7 +184,7 @@ Status: pending
 2. [CLARIFY] "실시간 알림" → WebSocket vs SSE vs Polling?
 ```
 
-## 기존 prompt_plan.md가 있을 때
+## 기존 docs/plans/prompt_plan.md가 있을 때
 
 1. 기존 내용을 "## Previous Plan" 섹션으로 아카이브
 2. 새 계획으로 덮어쓰기
@@ -204,5 +204,5 @@ Status: pending
 - 기획 문서를 충실히 반영 — 임의로 기능 추가/삭제 금지
 - 코드베이스 조사는 도구로 직접 수행 (사용자에게 묻지 않음)
 - 모호한 항목은 추측하지 않고 `[CLARIFY]`로 표시
-- 사용자가 확인할 때까지 prompt_plan.md에 저장하지 않음
+- 사용자가 확인할 때까지 docs/plans/prompt_plan.md에 저장하지 않음
 - 마일스톤당 3-8개 태스크 유지

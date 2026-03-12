@@ -29,7 +29,7 @@ fi
 # stdin으로 JSON 수신
 INPUT=$(cat)
 
-export _SECURITY_LOG="${HOME}/.claude/security.log"
+export _SECURITY_LOG="${CLAUDE_PROJECT_DIR:-.}/.claude/security.log"
 
 _TMPDIR="${TMPDIR:-${TEMP:-${TMP:-/tmp}}}"
 _SCRIPT_FILE=$(mktemp "${_TMPDIR}/hook-XXXXXX.py")

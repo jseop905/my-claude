@@ -197,7 +197,7 @@
       "id": "command-plan-from-spec",
       "type": "command",
       "name": "plan-from-spec",
-      "description": "/plan-from-spec 기획 문서를 읽어 prompt_plan.md로 변환. /auto, /orchestrate 연결.",
+      "description": "/plan-from-spec 기획 문서를 읽어 docs/plans/prompt_plan.md로 변환. /auto, /orchestrate 연결.",
       "path": "modules/commands/plan-from-spec.md",
       "tags": ["planning", "automation"]
     },
@@ -205,7 +205,7 @@
       "id": "command-next-task",
       "type": "command",
       "name": "next-task",
-      "description": "/next-task prompt_plan.md에서 우선순위 기반 다음 태스크 추천.",
+      "description": "/next-task docs/plans/prompt_plan.md에서 우선순위 기반 다음 태스크 추천.",
       "path": "modules/commands/next-task.md",
       "tags": ["planning"]
     },

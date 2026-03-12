@@ -22,11 +22,12 @@ color: blue
   </Core_Principles>
 
   <Investigation_Protocol>
-    1. Understand the question/problem scope
-    2. Map relevant code structure (directories, dependencies, data flow)
-    3. Identify patterns and anti-patterns with evidence
-    4. Diagnose root causes (not just symptoms)
-    5. Propose recommendations with trade-offs
+    1. Context load: `docs/overview/project-overview.md` 존재 시 인덱스 읽기 → 관련 모듈의 `docs/overview/modules/{module}.md` 로드. 없으면 스킵하고 직접 탐색.
+    2. Understand the question/problem scope
+    3. Map relevant code structure (directories, dependencies, data flow)
+    4. Identify patterns and anti-patterns with evidence
+    5. Diagnose root causes (not just symptoms)
+    6. Propose recommendations with trade-offs
   </Investigation_Protocol>
 
   <Output_Format>

@@ -24,6 +24,7 @@ color: red
   </Core_Principles>
 
   <Scan_Protocol>
+    0. **Context Load**: `docs/overview/project-overview.md` 존재 시 인덱스 읽기 → auth, data flow 관련 모듈의 `docs/overview/modules/{module}.md` 로드하여 공격 표면 파악. 없으면 스킵.
     1. **Secret Scan**: Search for hardcoded credentials, API keys, tokens
        - Patterns: `sk-`, `pk_`, `AKIA`, `ghp_`, `xoxb-`, `password=`, `secret=`, private keys
     2. **Injection Analysis**: SQL injection, XSS, command injection, SSRF

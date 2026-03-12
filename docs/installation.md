@@ -42,11 +42,13 @@ cp my-claude/templates/CLAUDE.md.tmpl CLAUDE.md
 # {프로젝트명}, {기술 스택} 등을 실제 값으로 교체
 ```
 
-## 4. 훅 실행 권한 부여
+## 4. 훅 실행 권한 부여 (macOS/Linux)
 
 ```bash
 chmod +x .claude/hooks/*.sh
 ```
+
+> Windows(Git Bash/MINGW)에서는 `settings.json`의 hooks command가 `bash "$CLAUDE_PROJECT_DIR/..."` 형식이므로 별도 권한 부여 없이 동작한다.
 
 ## 업데이트
 

@@ -1,5 +1,5 @@
 ---
-description: prompt_plan.md에서 미완료 태스크를 분석하고 다음 작업을 추천합니다.
+description: docs/plans/prompt_plan.md에서 미완료 태스크를 분석하고 다음 작업을 추천합니다.
 ---
 
 # /next-task
@@ -21,7 +21,7 @@ description: prompt_plan.md에서 미완료 태스크를 분석하고 다음 작
 ### Step 1: 프로젝트 상태 수집
 
 1. `git status`로 현재 작업 상태 확인
-2. `prompt_plan.md` 읽기 (작업 계획)
+2. `docs/plans/prompt_plan.md` 읽기 (작업 계획)
 3. 관련 문서 확인 (CLAUDE.md, spec.md 등)
 
 ### Step 2: 진행률 계산
@@ -63,14 +63,14 @@ description: prompt_plan.md에서 미완료 태스크를 분석하고 다음 작
 | Medium | 3-5 | ~200 | /auto feature |
 | Large | 6+ | ~500+ | /plan 먼저 → 분할 |
 
-## prompt_plan.md 없을 때
+## docs/plans/prompt_plan.md 없을 때
 
-`prompt_plan.md`가 없으면:
+`docs/plans/prompt_plan.md`가 없으면:
 1. 사용자에게 `/plan`으로 작업 계획을 먼저 수립하도록 안내
 2. 또는 현재 git diff/status 기반으로 진행중인 작업을 추론하여 다음 단계 제안
 
 ## 핵심 규칙
 
-- prompt_plan.md의 태스크 순서와 의존성을 존중
+- docs/plans/prompt_plan.md의 태스크 순서와 의존성을 존중
 - 의존성이 해결되지 않은 태스크는 추천하지 않음
 - 복잡도 추정은 파일 수와 예상 줄 수 기반

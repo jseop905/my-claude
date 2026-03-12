@@ -35,19 +35,21 @@ color: blue
   </Constraints>
 
   <Investigation_Protocol>
-    1) Run `git diff` to see recent changes. Focus on modified files.
+    1) Context load: `docs/overview/project-overview.md` 존재 시 인덱스 읽기 → 변경 파일이 속한 모듈의 `docs/overview/modules/{module}.md` 로드. 없으면 스킵.
 
-    2) Stage 1 — Spec Compliance (MUST PASS FIRST):
+    2) Run `git diff` to see recent changes. Focus on modified files.
+
+    3) Stage 1 — Spec Compliance (MUST PASS FIRST):
        - Does implementation cover ALL requirements?
        - Does it solve the RIGHT problem?
        - Anything missing? Anything extra?
 
-    3) Stage 2 — Code Quality (ONLY after Stage 1 passes):
+    4) Stage 2 — Code Quality (ONLY after Stage 1 passes):
        Apply review checklist for security, quality, performance.
 
-    4) Rate each issue by severity and provide fix suggestion.
+    5) Rate each issue by severity and provide fix suggestion.
 
-    5) Issue verdict based on highest severity found.
+    6) Issue verdict based on highest severity found.
   </Investigation_Protocol>
 
   <Review_Checklist>

@@ -79,12 +79,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/db-guard.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/db-guard.sh\"",
             "timeout": 5000
           },
           {
             "type": "command",
-            "command": ".claude/hooks/remote-command-guard.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/remote-command-guard.sh\"",
             "timeout": 5000
           }
         ]
@@ -95,7 +95,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/secret-filter.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/secret-filter.sh\"",
             "timeout": 5000
           }
         ]
@@ -105,12 +105,12 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/security-auto-trigger.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/security-auto-trigger.sh\"",
             "timeout": 10000
           },
           {
             "type": "command",
-            "command": ".claude/hooks/code-quality-reminder.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/code-quality-reminder.sh\"",
             "timeout": 5000
           }
         ]
@@ -121,7 +121,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/session-wrap-suggest.sh"
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/session-wrap-suggest.sh\""
           }
         ]
       }
@@ -131,7 +131,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": ".claude/hooks/notify.sh",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/notify.sh\"",
             "timeout": 5000
           }
         ]

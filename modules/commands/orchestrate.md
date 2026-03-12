@@ -4,7 +4,7 @@ description: Agent Teams를 구성하여 복수 태스크를 병렬 실행합니
 
 # /orchestrate
 
-> 복수 태스크의 병렬 에이전트 실행. prompt_plan.md의 독립적 태스크를 웨이브 단위로 동시 처리.
+> 복수 태스크의 병렬 에이전트 실행. docs/plans/prompt_plan.md의 독립적 태스크를 웨이브 단위로 동시 처리.
 > 단일 태스크를 순차 실행하려면 `/auto`를 사용.
 > team-orchestrator 스킬을 호출하여 실행.
 
@@ -22,7 +22,7 @@ description: Agent Teams를 구성하여 복수 태스크를 병렬 실행합니
 
 ### Step 1: 태스크 파싱
 
-1. `prompt_plan.md`에서 태스크 목록 추출
+1. `docs/plans/prompt_plan.md`에서 태스크 목록 추출
 2. 각 태스크의 의존성(`depends`) 분석
 3. 의존성 그래프(DAG) 구축, 순환 의존성 감지
 
@@ -78,9 +78,9 @@ Wave 3: [Task F]                  ← Wave 2 완료 후 실행
 - **충돌 감지**: 같은 파일 수정 충돌 시 리더 에이전트가 수동 병합 결정.
 - **전체 실패**: 2개 이상 태스크 연속 실패 시 전체 중단 & 보고.
 
-## prompt_plan.md 없을 때
+## docs/plans/prompt_plan.md 없을 때
 
-`prompt_plan.md`가 없으면:
+`docs/plans/prompt_plan.md`가 없으면:
 1. 사용자에게 `/plan`으로 작업 계획을 먼저 수립하도록 안내
 2. 또는 사용자의 직접 태스크 입력을 받아 진행
 

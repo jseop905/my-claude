@@ -1,5 +1,12 @@
 # 변경 이력
 
+## v0.3.1
+
+- settings.json.tmpl 훅 경로를 `bash "$CLAUDE_PROJECT_DIR/..."` 형식으로 변경 (Windows 호환)
+- prompt_plan.md 출력 경로를 `docs/plans/prompt_plan.md`로 변경
+- secret-filter 로그 경로를 프로젝트 내부(`$CLAUDE_PROJECT_DIR/.claude/security.log`)로 변경
+- architect, code-reviewer, security-reviewer, refactor-cleaner에 overview 컨텍스트 로드 단계 추가
+
 ## v0.3.0
 
 - Commands 2개 추가 (/overview, /plan-from-spec)

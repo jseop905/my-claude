@@ -43,7 +43,7 @@ color: cyan
 
     1) Environment Discovery:
        a) Run `git status --short` and `git diff --name-only` for changed files
-       b) Check project config files (CLAUDE.md, prompt_plan.md) for context
+       b) Check project config files (CLAUDE.md, docs/plans/prompt_plan.md) for context
        c) Detect project type and available commands from config files (package.json, Makefile, Cargo.toml, pyproject.toml, go.mod, etc.)
 
     2) Verification Pipeline (adapt to project type):
