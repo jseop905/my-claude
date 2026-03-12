@@ -186,6 +186,22 @@
       "tags": ["quality", "automation"]
     },
     {
+      "id": "command-overview",
+      "type": "command",
+      "name": "overview",
+      "description": "/overview 프로젝트 구조 분석 후 project-overview.md 생성. plan/plan-from-spec의 탐색 가속.",
+      "path": "modules/commands/overview.md",
+      "tags": ["planning", "core"]
+    },
+    {
+      "id": "command-plan-from-spec",
+      "type": "command",
+      "name": "plan-from-spec",
+      "description": "/plan-from-spec 기획 문서를 읽어 prompt_plan.md로 변환. /auto, /orchestrate 연결.",
+      "path": "modules/commands/plan-from-spec.md",
+      "tags": ["planning", "automation"]
+    },
+    {
       "id": "command-next-task",
       "type": "command",
       "name": "next-task",
@@ -247,6 +263,14 @@
       "name": "session-wrap-suggest",
       "description": "Stop 훅. 세션 종료 시 /session-wrap 실행을 제안.",
       "path": "modules/hooks/session-wrap-suggest.sh",
+      "tags": ["automation"]
+    },
+    {
+      "id": "hook-notify",
+      "type": "hook",
+      "name": "notify",
+      "description": "Notification 훅. 타입별(권한요청/유휴/추가입력/완료) Windows 토스트 알림. 5초 쓰로틀링.",
+      "path": "modules/hooks/notify.sh",
       "tags": ["automation"]
     },
     {
