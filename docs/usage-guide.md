@@ -7,6 +7,8 @@ my-claude 모듈의 명령어, 에이전트, 훅, 스킬에 대한 사용법 안
 ## 목차
 
 1. [슬래시 명령어](#슬래시-명령어)
+   - [/overview](#overview) — 프로젝트 구조 분석
+   - [/plan-from-spec](#plan-from-spec) — 기획 문서 → 구현 계획 변환
    - [/plan](#plan) — 구현 계획 수립
    - [/code-review](#code-review) — 코드 리뷰
    - [/verify](#verify) — 빌드/테스트/린트 검증
@@ -25,6 +27,81 @@ my-claude 모듈의 명령어, 에이전트, 훅, 스킬에 대한 사용법 안
 ---
 
 ## 슬래시 명령어
+
+### /overview
+
+프로젝트 구조를 분석하여 `docs/overview/` 하위에 인덱스 + 모듈 파일을 생성한다.
+
+```
+/overview                        # 전체 신규 생성
+/overview --update               # 변경된 모듈만 재분석
+/overview --module <module-name> # 특정 모듈만 재생성
+```
+
+**출력 구조:**
+```
+docs/overview/
+├── project-overview.md    ← 인덱스 (디렉토리 구조, 모듈 요약, 의존성, 진입점)
+└── modules/
+    ├── auth.md            ← 모듈 상세 (파일 목록, 공개 인터페이스, 내부 흐름)
+    ├── api.md
+    └── ...
+```
+
+**동작 흐름:**
+1. Glob으로 전체 디렉토리 트리 수집 (빌드 산출물 제외)
+2. 모듈별 상세 분석 → `docs/overview/modules/{module}.md` 생성
+3. 모듈 요약을 종합하여 인덱스 `project-overview.md` 생성
+4. 사용자 확인 후 저장
+
+**다른 명령어와의 연동:**
+- `/plan`, `/plan-from-spec` 등이 인덱스를 먼저 읽고, 필요한 모듈 파일만 추가 로드
+- overview가 없으면 기존 방식(전체 스캔)으로 폴백
+
+**참고:**
+- 코드 전체를 복사하지 않음 — 구조, 역할, 인터페이스만 기록
+- `docs/overview/`는 `.gitignore`에 추가 권장 (생성된 파일)
+
+---
+
+### /plan-from-spec
+
+기획 문서(spec, PRD, 기획서)를 읽어 `prompt_plan.md` 형식의 구현 계획으로 변환한다.
+
+```
+/plan-from-spec docs/spec.md                       # 전체 변환
+/plan-from-spec docs/spec.md --scope "사용자 인증"   # 특정 섹션만
+/plan-from-spec docs/spec.md --milestone-only       # 마일스톤 목록만
+```
+
+**지원 형식:** `.md`, `.txt`, `.pdf`, `.mdx`, `.rst`, `.adoc`, `.ipynb`
+
+**동작 흐름:**
+1. 기획 문서를 읽고 요구사항 추출 (기능/비기능/우선순위/의존성)
+2. `docs/overview/` 있으면 인덱스 기반으로 코드베이스 매핑, 없으면 전체 스캔
+3. 요구사항을 마일스톤으로 분할 (마일스톤당 3-8개 태스크)
+4. `prompt_plan.md` 형식으로 생성
+5. 사용자 확인 후 저장
+
+**모호함 처리:**
+- 해석이 불명확한 항목은 `[CLARIFY]` 태그로 표시
+- 계획 출력 시 별도 Clarifications 섹션으로 질문 정리
+- 사용자 답변 후 계획 업데이트
+
+**입력 검증 (5종):**
+| 검증 | 실패 시 |
+|------|---------|
+| 경로 누락 | 사용법 안내 후 중단 |
+| 파일 미존재 | 유사 파일 제안 |
+| 미지원 형식 | 지원 형식 안내 |
+| 빈 파일 | 안내 후 중단 |
+| `--scope` 섹션 미발견 | 존재하는 섹션 목록 제안 |
+
+**참고:**
+- 기획 문서를 충실히 반영 — 임의로 기능 추가/삭제 금지
+- 기존 `prompt_plan.md`가 있으면 "Previous Plan" 섹션으로 아카이브
+
+---
 
 ### /plan
 
@@ -318,6 +395,12 @@ TDD 워크플로우를 실행한다. tdd-guide 에이전트를 호출한다.
 | **security-auto-trigger** | 보안 관련 파일(auth, session, jwt, .env, migration 등) 수정 시 `/code-review` 실행을 제안. 세션당 1회만 제안. |
 | **code-quality-reminder** | 코드 파일 수정 후 품질 체크 리마인더 출력. 60초 간격으로 스로틀링하여 과도한 알림 방지. |
 
+### Notification 훅
+
+| 훅 | 동작 |
+|----|------|
+| **notify** | Notification 이벤트 발생 시 Windows 토스트 알림 발송. 타입별 메시지: 권한 요청(`permission_prompt`), 유휴(`idle_prompt`), 추가 입력(`elicitation_dialog`), 작업 완료(`task_completed`). 동일 타입 5초 이내 중복 방지. Python + PowerShell 필요. |
+
 ### Stop 훅 (세션 종료 시)
 
 | 훅 | 동작 |
@@ -396,6 +479,14 @@ TDD 워크플로우를 실행한다. tdd-guide 에이전트를 호출한다.
 /build-fix                      # 빌드 에러 수정
 /verify-loop                    # 전체 검증
 /commit                         # 커밋
+```
+
+### 기획 문서 기반 개발 (v3)
+
+```
+/overview                       # 프로젝트 구조 분석
+/plan-from-spec docs/spec.md   # 기획서 → 구현 계획
+/auto feature                   # 또는 /orchestrate feature
 ```
 
 ### 대규모 작업 (복수 태스크)
