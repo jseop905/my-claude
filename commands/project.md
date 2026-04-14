@@ -23,6 +23,7 @@ description: Analyze the codebase and generate project wiki documentation for ef
 |------|------|
 | `architecture.md` | 항상 |
 | `modules.md` | 항상 |
+| `conventions.md` | 항상 |
 | `data-model.md` | DB 스키마 감지 시 |
 | `api-surface.md` | API 라우트 감지 시 |
 

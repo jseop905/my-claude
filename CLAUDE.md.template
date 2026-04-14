@@ -49,8 +49,9 @@ export async function createTask(data: TaskInput): Promise<Task> {
 
 ## 프로젝트 문서
 
-프로젝트의 구조, 모듈, 데이터 모델 등의 상세 문서는 `docs/wiki/`를 참고한다.
-`/plan` 등 작업 범위를 특정해야 할 때 wiki 문서를 먼저 읽고 관련 코드를 좁힌다.
+`docs/wiki/`에 프로젝트의 구조, 모듈, 컨벤션 등의 문서가 있다.
+프로젝트의 구조, 모듈 경계, 코딩 패턴 등 컨텍스트가 필요할 때 `docs/wiki/`가 존재하면 참고한다.
+단, wiki는 보조 자료이다. 코드가 진실이므로 wiki와 코드가 다르면 코드를 따른다.
 
 - 최초 생성: `/project`
 - 갱신: `/wiki`

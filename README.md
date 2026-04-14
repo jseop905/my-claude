@@ -56,12 +56,13 @@ chmod +x .claude/hooks/*.sh
 | `/spec` | 요구사항을 구조화된 스펙으로 정리. 목적, 기능, 기술 스택, 경계를 질문하고 `docs/SPEC.md` 생성 |
 | `/plan` | 스펙 또는 요청을 수직 슬라이스로 작업 분해. wiki를 참고해 범위를 좁힌 뒤 `docs/tasks/`에 계획 저장 |
 | `/build` | 다음 pending 작업을 TDD로 구현. RED → GREEN → 리팩터링 → 커밋 |
+| `/quick-build` | 다음 pending 작업을 TDD 없이 구현. 빌드/테스트 검증 → 커밋 |
 | `/test` | 테스트 작성. 버그는 Prove-It 패턴(재현 테스트 FAIL → 수정 → PASS) |
 | `/review` | 5축 코드 리뷰 (정확성, 가독성, 아키텍처, 보안, 성능). Critical/Important/Suggestion 분류 |
 | `/code-simplify` | 동작 보존하며 코드 단순화. 각 변경마다 테스트 실행, 실패 시 롤백 |
 | `/ship` | 배포 전 전체 점검 (품질, 보안, 성능, 접근성, 인프라, 문서) + 롤백 계획 |
 | `/project` | 코드베이스를 분석하여 `docs/wiki/`에 프로젝트 문서 생성. 별도 에이전트에 위임 |
-| `/wiki` | `docs/wiki/` 문서 갱신 또는 추가. 인자 없으면 대상을 질문 |
+| `/wiki` | `docs/wiki/` 문서 갱신 또는 추가. 대상 지정 / 대화형 / sync 3가지 모드 |
 
 ### Agents
 
@@ -69,7 +70,7 @@ chmod +x .claude/hooks/*.sh
 |----------|------|
 | `code-reviewer` | `/review`의 리뷰어 페르소나. 5축 리뷰 기준과 판단 |
 | `test-engineer` | `/test`의 QA 페르소나. 테스트 전략, 커버리지 분석, Prove-It 패턴 |
-| `project-analyst` | `/project`가 위임하는 분석가. 구조 파악, 모듈 경계 식별, wiki 문서 생성 |
+| `project-analyst` | `/project`가 위임하는 분석가. 구조 파악, 모듈 경계 식별, 코딩 컨벤션 파악, wiki 문서 생성 |
 
 ### Skills
 

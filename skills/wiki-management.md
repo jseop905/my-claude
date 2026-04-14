@@ -61,6 +61,9 @@ scope: 전체
 ## 개요
 [시스템의 전체 구조를 1~2문단으로]
 
+## 디렉토리 역할
+[최상위 디렉토리 → 역할 매핑. 예: src/lib/ = 공유 유틸리티, src/features/ = 기능 모듈]
+
 ## 레이어 구조
 [계층 간 역할과 의존 방향]
 
@@ -85,6 +88,7 @@ scope: 전체
 - **경로:** `src/features/todo/`
 - **역할:** TODO 항목의 CRUD와 상태 관리
 - **진입점:** `index.ts` (외부 노출 API)
+- **패턴:** Repository 패턴, React hooks 노출
 - **의존:** `database`, `auth`
 - **의존받는 곳:** `api/routes/todo`
 ```
@@ -124,10 +128,36 @@ scope: API 라우트
 [에러 포맷, 페이지네이션 등]
 ```
 
+### conventions.md
+
+```markdown
+---
+title: 코딩 컨벤션
+updated: YYYY-MM-DD
+scope: 전체
+---
+
+## 네이밍 규칙
+[파일, 변수, 함수 네이밍 패턴]
+
+## 아키텍처 패턴
+[Repository, Service layer 등 사용 중인 패턴]
+
+## 에러 처리
+[Result 타입, 예외, 에러 코드 등]
+
+## 상태 관리
+[해당 시 — 상태 구조, 접근 방식]
+
+## 공통 유틸리티
+[공유 헬퍼 위치, 사용 기준]
+```
+
 ## 갱신 규칙
 
 1. **새 모듈 추가 시** — `modules.md`에 항목 추가, 필요 시 `architecture.md` 갱신
 2. **DB 스키마 변경 시** — `data-model.md` 갱신
 3. **API 변경 시** — `api-surface.md` 갱신
 4. **구조적 변경 시** — `architecture.md` 갱신, 영향받는 모듈 문서도 갱신
-5. **문서와 코드가 충돌하면** — 코드가 진실이다. 문서를 코드에 맞춘다
+5. **코딩 패턴 변경 시** — `conventions.md` 갱신
+6. **문서와 코드가 충돌하면** — 코드가 진실이다. 문서를 코드에 맞춘다

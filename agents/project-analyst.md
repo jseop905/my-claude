@@ -35,8 +35,21 @@ description: Codebase analyst for understanding project structure, architecture,
 
 - **역할:** 무엇을 담당하는가
 - **진입점:** 외부에서 접근하는 파일/함수
+- **패턴:** 어떤 아키텍처 패턴을 사용하는가
 - **의존성:** 어떤 모듈에 의존하는가
 - **의존 방향:** 단방향인가, 순환인가
+
+### 5. 코딩 컨벤션 파악
+
+코드에서 반복적으로 관찰되는 패턴을 수집한다:
+
+- **네이밍:** 파일, 변수, 함수의 네이밍 규칙
+- **아키텍처 패턴:** 실제 사용 중인 패턴 (Repository, Service layer 등)
+- **에러 처리:** 에러를 다루는 방식 (Result 타입, 예외, 에러 코드 등)
+- **상태 관리:** 해당 시 상태 구조와 접근 방식
+- **공통 유틸리티:** 공유 헬퍼의 위치와 사용 패턴
+
+관찰된 사실만 기록한다. 권장 사항이나 개선 제안을 넣지 않는다.
 
 ## 산출물
 
@@ -46,8 +59,9 @@ description: Codebase analyst for understanding project structure, architecture,
 
 | 문서 | 내용 |
 |------|------|
-| `architecture.md` | 시스템 구조, 레이어, 의존성 방향, 핵심 설계 결정 |
-| `modules.md` | 모듈별 역할, 경계, 진입점, 의존 관계 |
+| `architecture.md` | 시스템 구조, 디렉토리 역할, 레이어, 의존성 방향, 핵심 설계 결정 |
+| `modules.md` | 모듈별 역할, 경계, 진입점, 패턴, 의존 관계 |
+| `conventions.md` | 네이밍 규칙, 아키텍처 패턴, 에러 처리, 상태 관리, 공통 유틸리티 |
 
 ### 조건부 문서 (해당 시 생성)
 
