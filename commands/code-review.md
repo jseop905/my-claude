@@ -1,5 +1,5 @@
 ---
-name: review
+name: code-review
 description: Conduct a five-axis code review — correctness, readability, architecture, security, performance
 ---
 
