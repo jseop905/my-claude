@@ -1,6 +1,6 @@
 ---
 name: quick-build
-description: Implement the next task incrementally without TDD — build, verify, commit
+description: Implement the next task incrementally without TDD — build, verify, stage
 ---
 
 Follow `.claude/skills/incremental-implementation.md`.
@@ -12,7 +12,7 @@ Pick the next pending task from the plan. For each task:
 3. Implement the code to meet the acceptance criteria
 4. Run the full test suite to check for regressions
 5. Run the build to verify compilation
-6. Commit with a descriptive message
+6. Stage the changes with `git add` (do not commit)
 7. Mark the task complete and move to the next one
 
 If any step fails, follow `.claude/skills/debugging-and-error-recovery.md`.
